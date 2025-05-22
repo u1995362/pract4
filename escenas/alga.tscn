@@ -1,0 +1,188 @@
+[gd_scene load_steps=22 format=3 uid="uid://c3cpiois8vxd3"]
+
+[ext_resource type="Script" uid="uid://b4qx72aje67xr" path="res://scripts/alga.gd" id="1_26lqt"]
+[ext_resource type="Texture2D" uid="uid://ik6cmhc3vqil" path="res://assets/Basic Charakter Spritesheet.png" id="2_3t2co"]
+
+[sub_resource type="Animation" id="Animation_3t2co"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+
+[sub_resource type="Animation" id="Animation_2bt0v"]
+resource_name = "iddle_left"
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [8, 9]
+}
+
+[sub_resource type="Animation" id="Animation_bqcwn"]
+resource_name = "iddle_right"
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [12, 13]
+}
+
+[sub_resource type="Animation" id="Animation_odvwo"]
+resource_name = "walk_left"
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [10, 11]
+}
+
+[sub_resource type="Animation" id="Animation_owg5p"]
+resource_name = "walk_right"
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [14, 15]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ba23w"]
+_data = {
+&"RESET": SubResource("Animation_3t2co"),
+&"iddle_left": SubResource("Animation_2bt0v"),
+&"iddle_right": SubResource("Animation_bqcwn"),
+&"walk_left": SubResource("Animation_odvwo"),
+&"walk_right": SubResource("Animation_owg5p")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3t2co"]
+animation = &"iddle_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_odvwo"]
+animation = &"iddle_right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bqcwn"]
+animation = &"iddle_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2bt0v"]
+animation = &"iddle_right"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_fbnxs"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_3t2co")
+blend_point_0/pos = -1.1
+blend_point_1/node = SubResource("AnimationNodeAnimation_odvwo")
+blend_point_1/pos = 1.1
+blend_point_2/node = SubResource("AnimationNodeAnimation_bqcwn")
+blend_point_2/pos = -1.0
+blend_point_3/node = SubResource("AnimationNodeAnimation_2bt0v")
+blend_point_3/pos = 1.0
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_owg5p"]
+animation = &"walk_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_66wxm"]
+animation = &"walk_right"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_lr20x"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_owg5p")
+blend_point_0/pos = -1.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_66wxm")
+blend_point_1/pos = 1.0
+blend_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_17trp"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_p42vh"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wll3h"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_gs4ul"]
+states/Iddle/node = SubResource("AnimationNodeBlendSpace1D_fbnxs")
+states/Iddle/position = Vector2(304.5, 91.578)
+states/Start/position = Vector2(117.5, 91.5757)
+states/Walk/node = SubResource("AnimationNodeBlendSpace1D_lr20x")
+states/Walk/position = Vector2(571.5, 91.623)
+transitions = ["Start", "Iddle", SubResource("AnimationNodeStateMachineTransition_17trp"), "Iddle", "Walk", SubResource("AnimationNodeStateMachineTransition_p42vh"), "Walk", "Iddle", SubResource("AnimationNodeStateMachineTransition_wll3h")]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5m305"]
+radius = 5.0
+height = 16.0
+
+[node name="alga" type="CharacterBody2D"]
+position = Vector2(0, -4)
+script = ExtResource("1_26lqt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -4)
+texture = ExtResource("2_3t2co")
+hframes = 4
+vframes = 4
+frame = 8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+libraries = {
+&"": SubResource("AnimationLibrary_ba23w")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="Sprite2D"]
+tree_root = SubResource("AnimationNodeStateMachine_gs4ul")
+anim_player = NodePath("../AnimationPlayer")
+parameters/Iddle/blend_position = 0.200361
+parameters/Walk/blend_position = 0.000902534
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
+shape = SubResource("CapsuleShape2D_5m305")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0, -4)
+scale = Vector2(0.2, 0.5)
+
+[node name="CoyoteTimer" type="Timer" parent="."]
+
+[node name="StateMachine" type="Node" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="CoyoteTimer" to="." method="_on_coyote_timer_timeout"]
