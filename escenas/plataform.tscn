@@ -1,14 +1,14 @@
 [gd_scene load_steps=3 format=3 uid="uid://b6qag3kkf6hx7"]
 
-[ext_resource type="Texture2D" uid="uid://dfbfggym0mfn5" path="res://Water.png" id="1_uo4cf"]
+[ext_resource type="Texture2D" uid="uid://ntqk0vijmfhf" path="res://assets/platform.png" id="1_w0o55"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ril7b"]
-size = Vector2(62, 14)
+size = Vector2(11, 5)
 
 [node name="StaticBody2D" type="StaticBody2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_uo4cf")
+texture = ExtResource("1_w0o55")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ril7b")

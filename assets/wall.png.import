@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://mm8lchre3sqb"
-path="res://.godot/imported/Wall_Climbing.png-ba1cfae757c0fec8c84657fe6aa1e9d5.ctex"
+uid="uid://dcvlkibfjwg5n"
+path="res://.godot/imported/wall.png-6b1d64fa3ea5498e75707962a9c3b56c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/craftpix-net-405285-free-pixel-art-prototype-character-sprites/Animations/Wall_Climbing.png"
-dest_files=["res://.godot/imported/Wall_Climbing.png-ba1cfae757c0fec8c84657fe6aa1e9d5.ctex"]
+source_file="res://assets/wall.png"
+dest_files=["res://.godot/imported/wall.png-6b1d64fa3ea5498e75707962a9c3b56c.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c4nu26xdangyy"
-path="res://.godot/imported/Crawl.png-9a8b58a299cdebc5c936ac648d7d95ee.ctex"
+uid="uid://ntqk0vijmfhf"
+path="res://.godot/imported/platform.png-2814e55efba316ed5bf039a99ddbc9b5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/craftpix-net-405285-free-pixel-art-prototype-character-sprites/Animations/Crawl.png"
-dest_files=["res://.godot/imported/Crawl.png-9a8b58a299cdebc5c936ac648d7d95ee.ctex"]
+source_file="res://assets/platform.png"
+dest_files=["res://.godot/imported/platform.png-2814e55efba316ed5bf039a99ddbc9b5.ctex"]
 
 [params]
 

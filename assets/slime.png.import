@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bfwnuqtps8uch"
-path="res://.godot/imported/Upward Jump.png-a26f97beb8d39787317f3035a13c0b58.ctex"
+uid="uid://boasqmqvpty8p"
+path="res://.godot/imported/slime.png-44567d1ba3ebdbac1e5a191593b0b118.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/craftpix-net-405285-free-pixel-art-prototype-character-sprites/Animations/Upward Jump.png"
-dest_files=["res://.godot/imported/Upward Jump.png-a26f97beb8d39787317f3035a13c0b58.ctex"]
+source_file="res://assets/slime.png"
+dest_files=["res://.godot/imported/slime.png-44567d1ba3ebdbac1e5a191593b0b118.ctex"]
 
 [params]
 
