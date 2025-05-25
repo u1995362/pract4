@@ -37,11 +37,17 @@ func _physics_process(delta: float) -> void:
 
 
 func update_animation() -> void:
+	if not is_on_floor():
+		if velocity.y > 0:
+			animation_state.travel("Jump")
+			animation_tree.set("parameters/Jump/blend_position", direction)
+			return
+		else:
+			animation_state.travel("Fall")
+			animation_tree.set("parameters/Fall/blend_position", direction)
+			return
 	animation_state.travel("Iddle")
 	animation_tree.set("parameters/Iddle/blend_position", direction)
-	if not is_on_floor():
-		animation_state.travel("Jump")
-		animation_tree.set("parameters/Jump/blend_position", direction)
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	position = spawn_position
