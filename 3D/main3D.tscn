@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://dma6t6npfejxf"]
+
+[ext_resource type="Script" uid="uid://dadv2i8770sdo" path="res://3D/towerManager3D.gd" id="1_rc5oa"]
+[ext_resource type="PackedScene" uid="uid://dplduk1gv2xrm" path="res://3D/plataform3D.tscn" id="2_d3wqd"]
+[ext_resource type="Texture2D" uid="uid://1ly352o3aa1k" path="res://3D/wall3D.png" id="3_85uej"]
+[ext_resource type="Texture2D" uid="uid://baorqylnrw0sj" path="res://3D/tower3D.png" id="3_d3wqd"]
+[ext_resource type="PackedScene" uid="uid://cnli100tbhbgd" path="res://3D/slime3D.tscn" id="4_7mund"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_85uej"]
+albedo_texture = ExtResource("3_d3wqd")
+normal_texture = ExtResource("3_85uej")
+texture_filter = 0
+fixed_size = true
+point_size = 0.1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_0n0hp"]
+
+[node name="Main" type="Node3D"]
+
+[node name="Torre" type="Node3D" parent="."]
+script = ExtResource("1_rc5oa")
+
+[node name="StaticBody2D" parent="Torre" instance=ExtResource("2_d3wqd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.388455, 0.502322)
+
+[node name="StaticBody2D3" parent="Torre" instance=ExtResource("2_d3wqd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.17548, 0.502322)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Torre"]
+sides = 32
+material = SubResource("StandardMaterial3D_85uej")
+
+[node name="Sprite3D" type="Sprite3D" parent="Torre"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.321834, -5.96046e-08, 0.802309)
+texture = ExtResource("3_85uej")
+
+[node name="Node3D" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("CylinderMesh_0n0hp")
+
+[node name="slime" parent="." instance=ExtResource("4_7mund")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.452, 0.5)
+axis_lock_linear_z = true
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.07691)

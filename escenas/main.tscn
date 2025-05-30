@@ -27,11 +27,9 @@ tile_set = SubResource("TileSet_dkga6")
 
 [node name="platform" parent="Torre/Torre1" instance=ExtResource("2_tjxcq")]
 position = Vector2(15, 116)
-scale = Vector2(1.368, 0.707341)
 
 [node name="platform2" parent="Torre/Torre1" instance=ExtResource("2_tjxcq")]
 position = Vector2(35, 116)
-scale = Vector2(1.368, 0.707341)
 
 [node name="Torre2" type="TileMapLayer" parent="Torre"]
 position = Vector2(16, 0)
@@ -40,11 +38,9 @@ tile_set = SubResource("TileSet_dkga6")
 
 [node name="platform" parent="Torre/Torre2" instance=ExtResource("2_tjxcq")]
 position = Vector2(28, 115)
-scale = Vector2(1.368, 0.707341)
 
 [node name="platform2" parent="Torre/Torre2" instance=ExtResource("2_tjxcq")]
 position = Vector2(29, 88)
-scale = Vector2(1.368, 0.707341)
 
 [node name="Torre3" type="TileMapLayer" parent="Torre"]
 position = Vector2(72, 0)
@@ -53,18 +49,15 @@ tile_set = SubResource("TileSet_dkga6")
 
 [node name="platform" parent="Torre/Torre3" instance=ExtResource("2_tjxcq")]
 position = Vector2(28, 105)
-scale = Vector2(1.368, 0.707341)
 
 [node name="platform3" parent="Torre/Torre3" instance=ExtResource("2_tjxcq")]
 position = Vector2(43, 94)
-scale = Vector2(1.368, 0.707341)
 
 [node name="platform2" parent="Torre/Torre3" instance=ExtResource("2_tjxcq")]
 position = Vector2(14, 115)
-scale = Vector2(1.368, 0.707341)
 
 [node name="slime" parent="." instance=ExtResource("1_lkb1x")]
-position = Vector2(44, 60)
+position = Vector2(38, 55)
 
 [node name="Water" type="Sprite2D" parent="."]
 position = Vector2(8, 64)

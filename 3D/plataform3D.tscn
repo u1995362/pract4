@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dplduk1gv2xrm"]
+
+[ext_resource type="Texture2D" uid="uid://d2sner4tae1tb" path="res://3D/platform3D.png" id="1_2dwgy"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7akx2"]
+size = Vector3(0.11, 0.05, 0.05)
+
+[node name="StaticBody2D" type="StaticBody3D"]
+
+[node name="Sprite2D" type="Sprite3D" parent="."]
+cast_shadow = 0
+texture = ExtResource("1_2dwgy")
+
+[node name="CollisionShape2D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_7akx2")
