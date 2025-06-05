@@ -1,12 +1,12 @@
 extends Node2D
 
-const SPEED := 20.0
+const SPEED := 30.0
 const TILE_SIZE := 8
 const TILES_WIDE := 7
 const TOWER_WIDTH := TILE_SIZE * TILES_WIDE  # 56
 
 
-@onready var Background: TileMapLayer = $Background
+@onready var Background: TileMapLayer = $Scene/SubViewport/TowerTileMap
 @onready var Ground: Node2D = $Ground
 @onready var Torre1: Node2D = $Torre1
 @onready var Torre2: Node2D = $Torre2
@@ -25,6 +25,7 @@ func _physics_process(delta: float) -> void:
 	var direction := -int(Input.get_axis("ui_left", "ui_right"))
 	if direction:
 		for t in [Background, Ground, Left, Mid, Right]:
+			print(3*direction * SPEED * delta)
 			t.position.x += direction * SPEED * delta
 		check_wrap()
 
