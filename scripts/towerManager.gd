@@ -5,13 +5,16 @@ const TILE_SIZE := 8
 const TILES_WIDE := 7
 const TOWER_WIDTH := TILE_SIZE * TILES_WIDE  # 56
 
-@onready var Torre1: TileMapLayer = $Torre1
-@onready var Torre2: TileMapLayer = $Torre2
-@onready var Torre3: TileMapLayer = $Torre3
 
-var Left: TileMapLayer
-var Mid: TileMapLayer
-var Right: TileMapLayer
+@onready var Background: TileMapLayer = $Background
+@onready var Ground: Node2D = $Ground
+@onready var Torre1: Node2D = $Torre1
+@onready var Torre2: Node2D = $Torre2
+@onready var Torre3: Node2D = $Torre3
+
+var Left: Node2D
+var Mid: Node2D
+var Right: Node2D
 
 func _ready() -> void:
 	Left = Torre1
@@ -21,11 +24,21 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	var direction := -int(Input.get_axis("ui_left", "ui_right"))
 	if direction:
-		for t in [Left, Mid, Right]:
+		for t in [Background, Ground, Left, Mid, Right]:
 			t.position.x += direction * SPEED * delta
 		check_wrap()
 
 func check_wrap() -> void:
+	if Background.position.x < TILE_SIZE:
+		Background.position.x += TILE_SIZE
+		Ground.position.x += TILE_SIZE
+	elif Background.position.x > TILE_SIZE:
+		Background.position.x -= TILE_SIZE
+		Ground.position.x -= TILE_SIZE
+	
+	
+	
+	
 	# Si la torre de la derecha se sale por la izquierda, reubícala al final
 	if Right.position.x < 16+8:
 		print(Right.position.x)
