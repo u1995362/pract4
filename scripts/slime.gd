@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @onready var animation_tree:AnimationTree = $Sprite2D/AnimationTree
 @onready var animation_state=  animation_tree.get("parameters/playback")
+@export var slime_scene: PackedScene
 
 const SPEED : float = 64
 const JUMP_DISTANCE : float = 3 * 8
@@ -12,6 +13,9 @@ var direction: int = 1
 const JUMP_SPEED : float = ( -2 * JUMP_DISTANCE ) / ( JUMP_TIME ) 
 const GRAVITY : float = ( 2 * JUMP_DISTANCE ) / ( JUMP_TIME * JUMP_TIME ) 
 
+#Duplicacio
+var clone: CharacterBody2D = null
+var is_clone: bool = false
 
 #Coyote
 var coyote_frames = 6
@@ -25,6 +29,8 @@ func _ready() -> void:
 	$CoyoteTimer.wait_time = coyote_frames / 60.0
 
 func _physics_process(delta: float) -> void:
+	if is_clone:
+		return
 	
 	var current_direction = int(Input.get_axis("ui_left", "ui_right"))
 	if current_direction: direction = current_direction
@@ -34,7 +40,14 @@ func _physics_process(delta: float) -> void:
 	update_animation()
 	
 	move_and_slide()
+	sync_clone(delta)
 
+func _process(delta):
+	if is_clone:
+		return
+	
+	if Input.is_action_just_pressed("split") and clone == null:
+		split_slime()
 
 func update_animation() -> void:
 	if not is_on_floor():
@@ -76,3 +89,40 @@ func jump_controller(delta: float) -> void:
 
 func position_controller(delta: float) -> void:
 	velocity.x = (spawn_position.x - position.x)
+
+func split_slime():
+	if slime_scene == null:
+		return
+	
+	clone = slime_scene.instantiate()
+	clone.position = position + Vector2(16, 0)
+	clone.is_clone = true # 🔁 Indica que és un clon
+	get_parent().add_child(clone)
+
+func sync_clone(delta: float) -> void:
+	if clone == null:
+		return
+	
+	clone.velocity.x = -velocity.x
+	
+	clone.velocity.y += GRAVITY * delta
+	
+	if jumping and clone.is_on_floor():
+		clone.velocity.y = JUMP_SPEED
+	
+	clone.move_and_slide()
+	
+	var clone_anim_tree = clone.get_node("Sprite2D/AnimationTree")
+	var clone_anim_state = clone_anim_tree.get("parameters/playback")
+	var clone_direction = -direction
+	
+	if not clone.is_on_floor():
+		if clone.velocity.y > 0:
+			clone_anim_state.travel("Jump")
+			clone_anim_tree.set("parameters/Jump/blend_position", clone_direction)
+		else:
+			clone_anim_state.travel("Fall")
+			clone_anim_tree.set("parameters/Fall/blend_position", clone_direction)
+	else:
+		clone_anim_state.travel("Iddle")
+		clone_anim_tree.set("parameters/Iddle/blend_position", clone_direction)

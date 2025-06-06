@@ -25,6 +25,7 @@ func _physics_process(delta: float) -> void:
 	var direction := -int(Input.get_axis("ui_left", "ui_right"))
 	if direction:
 		for t in [Background, Ground, Left, Mid, Right]:
+			print(3*direction * SPEED * delta)
 			t.position.x += direction * SPEED * delta
 		check_wrap()
 
@@ -35,6 +36,9 @@ func check_wrap() -> void:
 	elif Background.position.x > TILE_SIZE:
 		Background.position.x -= TILE_SIZE
 		Ground.position.x -= TILE_SIZE
+	
+	
+	
 	
 	# Si la torre de la derecha se sale por la izquierda, reubícala al final
 	if Right.position.x < 16+8:
