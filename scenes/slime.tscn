@@ -226,12 +226,13 @@ parameters/Jump/blend_position = -1.25371
 position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_3t2co")
 
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -37.23)
+
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 rect = Rect2(-4, -8, 8, 8)
 
 [node name="CoyoteTimer" type="Timer" parent="."]
-
-[node name="StateMachine" type="Node" parent="."]
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="timeout" from="CoyoteTimer" to="." method="_on_coyote_timer_timeout"]
