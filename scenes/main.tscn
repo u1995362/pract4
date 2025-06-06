@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://d1q7xp11tjvtf"]
+[gd_scene load_steps=16 format=4 uid="uid://d1q7xp11tjvtf"]
 
 [ext_resource type="Shader" path="res://distorsio.gdshader" id="1_68mvh"]
 [ext_resource type="PackedScene" uid="uid://c3cpiois8vxd3" path="res://scenes/slime.tscn" id="1_lkb1x"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/towerManager.gd" id="2_a8p2b"]
 [ext_resource type="Texture2D" uid="uid://cpl2hmmcr2h6b" path="res://assets/wallTile.png" id="2_o8odp"]
 [ext_resource type="PackedScene" uid="uid://b6qag3kkf6hx7" path="res://scenes/plataform.tscn" id="2_tjxcq"]
+[ext_resource type="PackedScene" uid="uid://cwmgbyp8u3wni" path="res://scenes/Flame.tscn" id="6_5ohk7"]
 [ext_resource type="Texture2D" uid="uid://c765fi51yphaj" path="res://assets/ground.png" id="6_lyxkq"]
 [ext_resource type="PackedScene" uid="uid://dmqlieh7sp357" path="res://scenes/wheel.tscn" id="6_shiux"]
 [ext_resource type="Texture2D" uid="uid://d2hwi0hkbv8ym" path="res://assets/sky.png" id="7_tipki"]
@@ -66,6 +67,9 @@ position = Vector2(20, 112)
 
 [node name="platform3" parent="Torre/Torre1" instance=ExtResource("2_tjxcq")]
 position = Vector2(31, 112)
+
+[node name="CharacterBody2D" parent="Torre/Torre1" instance=ExtResource("6_5ohk7")]
+position = Vector2(84, 37)
 
 [node name="Torre2" type="Node2D" parent="Torre"]
 position = Vector2(16, 0.5)
