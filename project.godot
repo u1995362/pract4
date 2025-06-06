@@ -65,6 +65,13 @@ jump={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="persontage"
+2d_physics/layer_2="enemic"
+2d_physics/layer_3="plataforma"
+2d_physics/layer_6="hurtbox"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
