@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends Avatar
 
 @onready var animation_tree:AnimationTree = $Sprite2D/AnimationTree
 @onready var animation_state=  animation_tree.get("parameters/playback")
@@ -7,15 +7,13 @@ extends CharacterBody2D
 const SPEED : float = 64
 const JUMP_DISTANCE : float = 3 * 8
 const JUMP_TIME : float = 0.5
-
-var direction: int = 1
-
 const JUMP_SPEED : float = ( -2 * JUMP_DISTANCE ) / ( JUMP_TIME ) 
 const GRAVITY : float = ( 2 * JUMP_DISTANCE ) / ( JUMP_TIME * JUMP_TIME ) 
 
 #Duplicacio
 var clone: CharacterBody2D = null
 var is_clone: bool = false
+var direction: int = 1
 
 #Coyote
 var coyote_frames = 6
