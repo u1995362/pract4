@@ -1,12 +1,17 @@
 extends Node2D
 
-const TOWER_WIDTH := 56  
+const TOWER_WIDTH : int = 56  
+const TILE_SIZE : int = 8
+const SPEED : int = 8.0
 
 @onready var Player := $"../slime"
+
+@onready var Tower := $Scene/Sprite2D
+@onready var innerTower := $Scene/SubViewport/WallBackground
+
 @onready var Torre1 := $Torre1
 @onready var Torre2 := $Torre2
 @onready var Torre3 := $Torre3
-@onready var enemy := $Falme
 
 var Left
 var Mid
@@ -21,8 +26,20 @@ func _ready() -> void:
 	Mid.position.x = 0
 	Right.position.x = TOWER_WIDTH
 
-func _process(delta: float) -> void:
-	check_wrap()
+func _physics_process(delta: float) -> void:
+	Tower.position.x = Player.global_position.x
+	var direction := -int(Input.get_axis("move_left", "move_right"))
+	if direction:
+		innerTower.position.x = lerp(innerTower.position.x,innerTower.position.x + direction * SPEED, delta*3)
+		check_tower_wrap() 
+		check_wrap()
+
+func check_tower_wrap() -> void:
+	
+	if innerTower.position.x < -TILE_SIZE:
+		innerTower.position.x += TILE_SIZE
+	elif innerTower.position.x > TILE_SIZE:
+		innerTower.position.x -= TILE_SIZE
 
 func check_wrap() -> void:
 	var px = Player.global_position.x

@@ -4,7 +4,7 @@ extends Avatar
 @onready var animation_state=  animation_tree.get("parameters/playback")
 @export var slime_scene: PackedScene
 
-const SPEED : float = 130.0
+const SPEED : float = 30.0
 const JUMP_DISTANCE : float = 3 * 8
 const JUMP_TIME : float = 0.5
 const JUMP_SPEED : float = ( -2 * JUMP_DISTANCE ) / ( JUMP_TIME ) 
@@ -54,7 +54,7 @@ func movement_controller(delta: float) -> void:
 		
 	# Handle movement
 	
-	var current_direction = int(Input.get_axis("ui_left", "ui_right"))
+	var current_direction = int(Input.get_axis("move_left", "move_right"))
 	if current_direction: 
 		direction = current_direction
 		velocity.x = direction * SPEED

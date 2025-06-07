@@ -1,7 +1,7 @@
 [gd_scene load_steps=31 format=3 uid="uid://c3cpiois8vxd3"]
 
 [ext_resource type="Script" path="res://scripts/slime.gd" id="1_26lqt"]
-[ext_resource type="Texture2D" uid="uid://boasqmqvpty8p" path="res://assets/slimeSpritesheet.png" id="2_3t2co"]
+[ext_resource type="Texture2D" uid="uid://boasqmqvpty8p" path="res://assets/Characters/slime.png" id="2_3t2co"]
 
 [sub_resource type="Animation" id="Animation_3t2co"]
 length = 0.001
@@ -202,6 +202,7 @@ graph_offset = Vector2(-172.05, 11.5875)
 size = Vector2(8, 8)
 
 [node name="slime" type="CharacterBody2D"]
+collision_mask = 5
 script = ExtResource("1_26lqt")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

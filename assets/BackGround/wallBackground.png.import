@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bv5b8wov2128o"
-path="res://.godot/imported/Flame_Enemy.png-437768284f97b05966ba6520253f5b54.ctex"
+uid="uid://beafma5jlu5bo"
+path="res://.godot/imported/wallBackground.png-5d99785ca4108de101b88a9b692e2967.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Flame_Enemy.png"
-dest_files=["res://.godot/imported/Flame_Enemy.png-437768284f97b05966ba6520253f5b54.ctex"]
+source_file="res://assets/BackGround/wallBackground.png"
+dest_files=["res://.godot/imported/wallBackground.png-5d99785ca4108de101b88a9b692e2967.ctex"]
 
 [params]
 

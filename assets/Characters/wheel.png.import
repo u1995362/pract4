@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvw4i8a6itq44"
-path="res://.godot/imported/verd.png-c4b61a04739ba14227431de4c7b48289.ctex"
+uid="uid://dcyerohq6rge7"
+path="res://.godot/imported/wheel.png-e188069c2b9a4cfcf21ca276a3c146a7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/verd.png"
-dest_files=["res://.godot/imported/verd.png-c4b61a04739ba14227431de4c7b48289.ctex"]
+source_file="res://assets/Characters/wheel.png"
+dest_files=["res://.godot/imported/wheel.png-e188069c2b9a4cfcf21ca276a3c146a7.ctex"]
 
 [params]
 
