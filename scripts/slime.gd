@@ -4,7 +4,7 @@ extends Avatar
 @onready var animation_state=  animation_tree.get("parameters/playback")
 @export var slime_scene: PackedScene
 
-const SPEED : float = 30.0
+const SPEED : float = 130.0
 const JUMP_DISTANCE : float = 3 * 8
 const JUMP_TIME : float = 0.5
 const JUMP_SPEED : float = ( -2 * JUMP_DISTANCE ) / ( JUMP_TIME ) 

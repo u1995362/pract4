@@ -1,15 +1,15 @@
 extends CharacterBody2D
 
-var speed := 20.0
+var speed := 60.0
 var direction := 1
+const WIDTH_LOOP := 56 * 3 
 
 func _physics_process(delta: float) -> void:
-	#if dreta:
-	#	direction = 1
-	#	$AnimatedSprite2D.play("walk_right")
-	#elif esquerra:
-	#	direction = -1
-	#	$AnimatedSprite2D.play("walk_left")
-	
 	velocity = Vector2(direction * speed, 0)
 	move_and_slide()
+
+	if position.x >= Global.midTowerPosition.x + WIDTH_LOOP / 2:
+		position.x -= WIDTH_LOOP
+
+	if position.x <= Global.midTowerPosition.x - WIDTH_LOOP / 2:
+		position.x += WIDTH_LOOP
