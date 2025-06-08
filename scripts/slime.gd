@@ -4,11 +4,17 @@ extends Avatar
 @onready var animation_state=  animation_tree.get("parameters/playback")
 @export var slime_scene: PackedScene
 
+@onready var rayCL: RayCast2D = $RayCrouchL
+@onready var rayCR: RayCast2D = $RayCrouchR
+
 const SPEED : float = 30.0
 const JUMP_DISTANCE : float = 3 * 8
 const JUMP_TIME : float = 0.5
 const JUMP_SPEED : float = ( -2 * JUMP_DISTANCE ) / ( JUMP_TIME ) 
 const GRAVITY : float = ( 2 * JUMP_DISTANCE ) / ( JUMP_TIME * JUMP_TIME ) 
+const JUMP_MOON : float = 0.8
+const FALL_FAST : float = 1.8
+
 
 #Duplicacio
 var clone: CharacterBody2D = null
@@ -21,9 +27,9 @@ var last_floor = false
 var coyote = false 
 var jumping = false
 
-var spawn_position
+var crawling = false
+
 func _ready() -> void:
-	spawn_position = position
 	$CoyoteTimer.wait_time = coyote_frames / 60.0
 
 func _physics_process(delta: float) -> void:
@@ -36,21 +42,33 @@ func input_controller(delta: float) -> void:
 	
 	movement_controller(delta)
 
-	if Input.is_action_just_pressed("split") and clone == null:
-		split_controller(delta)
+	#if Input.is_action_just_pressed("split") and clone == null:
+		#split_controller(delta)
 	
 
 func movement_controller(delta: float) -> void:
 	velocity.x = 0
 	if not is_on_floor():
-		velocity.y += GRAVITY * delta
+		var gravity_mod : float = 1
+		if Input.is_action_pressed("fall"):
+			gravity_mod = FALL_FAST
+		elif Input.is_action_pressed("jump"):
+			gravity_mod = JUMP_MOON
+		velocity.y +=  GRAVITY * gravity_mod * delta
 		if !jumping and last_floor and !coyote:
 			coyote = true
 			last_floor = false
 			$CoyoteTimer.start()
-	elif jumping:
-		jumping = false
-		last_floor = true
+	else:
+		if jumping:
+			jumping = false
+			last_floor = true
+		if Input.is_action_pressed("fall"):
+			crawling = true
+		elif crawling: 
+			if can_uncrouch():
+				crawling = false
+		
 		
 	# Handle movement
 	
@@ -61,11 +79,11 @@ func movement_controller(delta: float) -> void:
 	
 	
 	# Handle jump.
-	if Input.is_action_just_pressed("jump") and (is_on_floor() or coyote):
+	if Input.is_action_just_pressed("jump") and (!crawling or crawling and can_uncrouch()) and (is_on_floor() or coyote):
 		velocity.y = JUMP_SPEED
 		jumping = true
 
-
+"""
 func split_controller(delta: float) -> void:
 	clone = slime_scene.instantiate()
 	clone.position = position + Vector2(16, 0)
@@ -97,9 +115,13 @@ func sync_clone(delta: float) -> void:
 	else:
 		clone_anim_state.travel("Iddle")
 		clone_anim_tree.set("parameters/Iddle/blend_position", clone_direction)
+"""
 
+func can_uncrouch() -> bool:
+	return !rayCL.is_colliding() and !rayCR.is_colliding()
 
 func update_animation() -> void:
+	print(is_on_floor(), crawling)
 	if not is_on_floor():
 		if velocity.y > 0:
 			animation_state.travel("Jump")
@@ -109,11 +131,13 @@ func update_animation() -> void:
 			animation_state.travel("Fall")
 			animation_tree.set("parameters/Fall/blend_position", direction)
 			return
+	if crawling:
+		animation_state.travel("Crouch")
+		animation_tree.set("parameters/Crouch/blend_position", direction)
+		return
 	animation_state.travel("Iddle")
 	animation_tree.set("parameters/Iddle/blend_position", direction)
-
-func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
-	position = spawn_position
+	print("iddle")
 
 func _on_coyote_timer_timeout():
 	coyote = false

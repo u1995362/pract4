@@ -88,14 +88,14 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nvruf"]
-radius = 4.0
+radius = 5.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3t2co"]
 size = Vector2(8, 8)
 
 [node name="enemy" type="CharacterBody2D"]
 collision_layer = 2
-collision_mask = 0
+collision_mask = 4
 script = ExtResource("1_wrdvb")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -117,8 +117,20 @@ shape = SubResource("RectangleShape2D_3t2co")
 
 [node name="RayCast2DL" type="RayCast2D" parent="."]
 position = Vector2(-4.5, -4)
-target_position = Vector2(0, 5)
+target_position = Vector2(-0.5, 5)
+collision_mask = 4
+
+[node name="RayCast2DL2" type="RayCast2D" parent="."]
+position = Vector2(-4.5, -4)
+target_position = Vector2(-2, 0)
+collision_mask = 4
 
 [node name="RayCast2DR" type="RayCast2D" parent="."]
 position = Vector2(4.5, -4)
-target_position = Vector2(0, 5)
+target_position = Vector2(0.5, 5)
+collision_mask = 4
+
+[node name="RayCast2DR2" type="RayCast2D" parent="."]
+position = Vector2(4.5, -4)
+target_position = Vector2(2, 0)
+collision_mask = 4
