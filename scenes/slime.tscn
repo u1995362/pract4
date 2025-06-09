@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://c3cpiois8vxd3"]
+[gd_scene load_steps=40 format=3 uid="uid://c3cpiois8vxd3"]
 
 [ext_resource type="Script" path="res://scripts/slime.gd" id="1_26lqt"]
 [ext_resource type="Texture2D" uid="uid://c8o14nly6t0je" path="res://assets/Characters/slime.png" id="2_3t2co"]
@@ -39,7 +39,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [12]
+"values": [0]
 }
 
 [sub_resource type="Animation" id="Animation_tlmay"]
@@ -194,7 +194,7 @@ tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.333, 0.667),
+"times": PackedFloat32Array(0, 0.15, 0.85),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [4, 5, 6]
@@ -210,15 +210,47 @@ tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.333, 0.667),
+"times": PackedFloat32Array(0, 0.15, 0.85),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [8, 9, 10]
 }
 
+[sub_resource type="Animation" id="Animation_ap8ko"]
+resource_name = "charge_left"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
+[sub_resource type="Animation" id="Animation_sgejl"]
+resource_name = "charge_right"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ba23w"]
 _data = {
 "RESET": SubResource("Animation_3t2co"),
+"charge_left": SubResource("Animation_ap8ko"),
+"charge_right": SubResource("Animation_sgejl"),
 "crouch_left": SubResource("Animation_tlmay"),
 "crouch_right": SubResource("Animation_20jag"),
 "fall_left": SubResource("Animation_ckuph"),
@@ -310,16 +342,16 @@ advance_mode = 2
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_gs4ul"]
 states/Crouch/node = SubResource("AnimationNodeBlendSpace1D_6tsta")
 states/Crouch/position = Vector2(405.95, 236.587)
-states/End/position = Vector2(904.5, 98)
+states/End/position = Vector2(761, 85.4587)
 states/Fall/node = SubResource("AnimationNodeBlendSpace1D_epd2e")
-states/Fall/position = Vector2(514, 92.039)
+states/Fall/position = Vector2(511, 91.5774)
 states/Iddle/node = SubResource("AnimationNodeBlendSpace1D_fbnxs")
 states/Iddle/position = Vector2(304.5, 91.578)
 states/Jump/node = SubResource("AnimationNodeBlendSpace1D_55p85")
 states/Jump/position = Vector2(407.35, -32.4226)
 states/Start/position = Vector2(117.5, 91.5757)
 transitions = ["Start", "Iddle", SubResource("AnimationNodeStateMachineTransition_17trp"), "Iddle", "Jump", SubResource("AnimationNodeStateMachineTransition_alvqa"), "Jump", "Iddle", SubResource("AnimationNodeStateMachineTransition_ut8jl"), "Iddle", "Fall", SubResource("AnimationNodeStateMachineTransition_c5loq"), "Fall", "Iddle", SubResource("AnimationNodeStateMachineTransition_ckuph"), "Fall", "Jump", SubResource("AnimationNodeStateMachineTransition_brl6k"), "Jump", "Fall", SubResource("AnimationNodeStateMachineTransition_55p85"), "Iddle", "Crouch", SubResource("AnimationNodeStateMachineTransition_t2e7j"), "Crouch", "Iddle", SubResource("AnimationNodeStateMachineTransition_tg4t3")]
-graph_offset = Vector2(-24.0499, -11.5551)
+graph_offset = Vector2(-22.0499, -43.5551)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3t2co"]
 size = Vector2(8, 8)
@@ -333,7 +365,6 @@ position = Vector2(0, -4)
 texture = ExtResource("2_3t2co")
 hframes = 4
 vframes = 4
-frame = 12
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
 libraries = {

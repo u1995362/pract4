@@ -6,25 +6,17 @@ const SPEED : int = 8.0
 
 @onready var Player := $"../slime"
 
-@onready var Tower := $Scene/Node2D
-@onready var innerTower := $Scene/SubViewport/WallBackground
+@onready var Tower := $Scene/TowerSprites
+@onready var innerTower := $Scene/TowerViewport/WallBackground
 
-@onready var Torre1 := $Torre1
-@onready var Torre2 := $Torre2
-@onready var Torre3 := $Torre3
+@onready var Left := $Tower1
+@onready var Mid := $Tower2
+@onready var Right := $Tower3
 
-var Left
-var Mid
-var Right
-
-func _ready() -> void:
-	Left = Torre1
-	Mid = Torre2
-	Right = Torre3
-	
+"func _ready() -> void:
 	Left.position.x = -TOWER_WIDTH
 	Mid.position.x = 0
-	Right.position.x = TOWER_WIDTH
+	Right.position.x = TOWER_WIDTH"
 
 func _physics_process(delta: float) -> void:
 	Tower.position.x = Player.global_position.x

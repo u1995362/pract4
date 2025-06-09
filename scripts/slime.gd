@@ -7,6 +7,8 @@ extends Avatar
 @onready var rayCL: RayCast2D = $RayCrouchL
 @onready var rayCR: RayCast2D = $RayCrouchR
 
+var direction: int = 1
+
 const SPEED : float = 30.0
 const JUMP_DISTANCE : float = 3 * 8
 const JUMP_TIME : float = 0.5
@@ -17,29 +19,100 @@ const FALL_FAST : float = 1.8
 
 
 #Duplicacio
-var clone: CharacterBody2D = null
-var is_clone: bool = false
-var direction: int = 1
+#var clone: CharacterBody2D = null
+#var is_clone: bool = false
+
+
 
 #Coyote
 var coyote_frames = 6
-var last_floor = false
+#var last_floor = false
 var coyote = false 
-var jumping = false
 
-var crawling = false
+enum state {
+	IDDLE,
+	JUMPING,
+	FALLING,
+	CRAWLING
+}
+var actual_state : state = state.IDDLE
 
 func _ready() -> void:
 	$CoyoteTimer.wait_time = coyote_frames / 60.0
 
 func _physics_process(delta: float) -> void:
-	if is_clone: return
-	input_controller(delta)
+	#if is_clone: return
+	#input_controller(delta)
+	update_state(delta)
 	update_animation()
+
+func update_state(delta: float) -> void:
+	match actual_state:
+		state.IDDLE:
+			if !is_on_floor():
+				$CoyoteTimer.start()
+				actual_state = state.FALLING
+			
+			elif Input.is_action_pressed("fall"):
+				actual_state = state.CRAWLING
+			
+			elif Input.is_action_pressed("jump"):
+				jump()
+				actual_state = state.JUMPING
+		
+		state.JUMPING:
+			jump_handler(delta)
+			
+			if velocity.y > 0:
+				actual_state = state.FALLING
+		
+		state.FALLING:
+			jump_handler(delta)
+			
+			if is_on_floor():
+				coyote = true
+				actual_state = state.IDDLE
+			
+			if Input.is_action_just_pressed("jump") and coyote:
+				jump()
+				actual_state = state.JUMPING
+		
+		state.CRAWLING:
+			if !is_on_floor():
+				$CoyoteTimer.start()
+				actual_state = state.FALLING
+			elif can_uncrouch():
+				if !Input.is_action_pressed("fall"):
+					actual_state = state.IDDLE
+				elif Input.is_action_pressed("jump"):
+					jump()
+					actual_state = state.JUMPING
+	
+	movement()
+	
+
+func movement() -> void:
+	velocity.x = 0
+	var current_direction = int(Input.get_axis("move_left", "move_right"))
+	if current_direction: 
+		direction = current_direction
+		velocity.x = direction * SPEED
 	move_and_slide()
 
+func jump() -> void:
+	coyote = false
+	velocity.y = JUMP_SPEED
+
+func jump_handler(delta: float) -> void:
+	var gravity_mod : float = 1
+	if Input.is_action_pressed("fall"):
+		gravity_mod = FALL_FAST
+	elif Input.is_action_pressed("jump"):
+		gravity_mod = JUMP_MOON
+	velocity.y +=  GRAVITY * gravity_mod * delta
+
+"""
 func input_controller(delta: float) -> void:
-	
 	movement_controller(delta)
 
 	#if Input.is_action_just_pressed("split") and clone == null:
@@ -82,6 +155,7 @@ func movement_controller(delta: float) -> void:
 	if Input.is_action_just_pressed("jump") and (!crawling or crawling and can_uncrouch()) and (is_on_floor() or coyote):
 		velocity.y = JUMP_SPEED
 		jumping = true
+"""
 
 """
 func split_controller(delta: float) -> void:
@@ -121,24 +195,25 @@ func can_uncrouch() -> bool:
 	return !rayCL.is_colliding() and !rayCR.is_colliding()
 
 func update_animation() -> void:
-	print(is_on_floor(), crawling)
-	if not is_on_floor():
-		if velocity.y > 0:
+	match actual_state:
+		state.IDDLE:
+			animation_state.travel("Iddle")
+			animation_tree.set("parameters/Iddle/blend_position", direction)
+		
+		state.JUMPING:
 			animation_state.travel("Jump")
 			animation_tree.set("parameters/Jump/blend_position", direction)
-			return
-		else:
+		
+		state.FALLING:
 			animation_state.travel("Fall")
 			animation_tree.set("parameters/Fall/blend_position", direction)
-			return
-	if crawling:
-		animation_state.travel("Crouch")
-		animation_tree.set("parameters/Crouch/blend_position", direction)
-		return
-	animation_state.travel("Iddle")
-	animation_tree.set("parameters/Iddle/blend_position", direction)
-	print("iddle")
+		
+		state.CRAWLING:
+			animation_state.travel("Crouch")
+			animation_tree.set("parameters/Crouch/blend_position", direction)
+
 
 func _on_coyote_timer_timeout():
-	coyote = false
+	if !is_on_floor():
+		coyote = false
 	$CoyoteTimer.stop()
