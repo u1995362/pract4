@@ -1,6 +1,6 @@
 shader_type canvas_item;
 
-uniform float strength : hint_range(0.0, 1.0) = 0.1; // 0 = sin efecto, 1 = máximo aplastamiento
+uniform float strength : hint_range(0.0, 1.0) = 0.5; // 0 = sin efecto, 1 = máximo aplastamiento
 
 void fragment() {
     vec2 uv = UV;

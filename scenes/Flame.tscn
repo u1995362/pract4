@@ -1,7 +1,7 @@
-[gd_scene load_steps=19 format=3 uid="uid://cwmgbyp8u3wni"]
+[gd_scene load_steps=19 format=3 uid="uid://xkseisetgdhg"]
 
-[ext_resource type="Script" path="res://assets/flame.gd" id="1_o5kmf"]
-[ext_resource type="Texture2D" uid="uid://bv5b8wov2128o" path="res://assets/Flame_Enemy.png" id="1_ti0kh"]
+[ext_resource type="Script" path="res://scripts/Enemies/flame.gd" id="1_0upoi"]
+[ext_resource type="Texture2D" uid="uid://bv5b8wov2128o" path="res://assets/Characters/flame.png" id="1_ti0kh"]
 [ext_resource type="Script" path="res://scripts/resources/hurtbox.gd" id="2_3avi0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qrao2"]
@@ -117,7 +117,7 @@ size = Vector2(42, 53)
 scale = Vector2(0.273593, 0.273593)
 collision_layer = 2
 collision_mask = 0
-script = ExtResource("1_o5kmf")
+script = ExtResource("1_0upoi")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_gv7au")

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://boasqmqvpty8p"
-path="res://.godot/imported/slimeSpritesheet.png-41e77637b690642b9e2c525483e7c8c1.ctex"
+uid="uid://cpl2hmmcr2h6b"
+path="res://.godot/imported/wallTile.png-b5ffa26760eae450bf6191f711c784a0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/slimeSpritesheet.png"
-dest_files=["res://.godot/imported/slimeSpritesheet.png-41e77637b690642b9e2c525483e7c8c1.ctex"]
+source_file="res://assets/BackGround/wallTile.png"
+dest_files=["res://.godot/imported/wallTile.png-b5ffa26760eae450bf6191f711c784a0.ctex"]
 
 [params]
 

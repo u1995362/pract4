@@ -3,75 +3,84 @@
 [ext_resource type="Shader" path="res://distorsio.gdshader" id="1_68mvh"]
 [ext_resource type="PackedScene" uid="uid://c3cpiois8vxd3" path="res://scenes/slime.tscn" id="1_lkb1x"]
 [ext_resource type="Script" path="res://scripts/tower.gd" id="1_ufjuo"]
-[ext_resource type="Texture2D" uid="uid://jyt6p5subqwj" path="res://assets/skyBackground.png" id="2_68mvh"]
-[ext_resource type="Texture2D" uid="uid://cpl2hmmcr2h6b" path="res://assets/wallTile.png" id="2_o8odp"]
-[ext_resource type="PackedScene" uid="uid://b6qag3kkf6hx7" path="res://scenes/plataform.tscn" id="2_tjxcq"]
-[ext_resource type="PackedScene" uid="uid://cwmgbyp8u3wni" path="res://scenes/Flame.tscn" id="6_5ohk7"]
-[ext_resource type="Texture2D" uid="uid://c765fi51yphaj" path="res://assets/ground.png" id="6_lyxkq"]
+[ext_resource type="Texture2D" uid="uid://jyt6p5subqwj" path="res://assets/BackGround/skyBackground.png" id="2_68mvh"]
+[ext_resource type="Texture2D" uid="uid://cuwr7ff4m3m7x" path="res://assets/BackGround/clouds.png" id="5_rgnqb"]
+[ext_resource type="PackedScene" uid="uid://xkseisetgdhg" path="res://scenes/Flame.tscn" id="6_5ohk7"]
+[ext_resource type="Texture2D" uid="uid://c765fi51yphaj" path="res://assets/BackGround/ground.png" id="6_lyxkq"]
+[ext_resource type="Texture2D" uid="uid://beafma5jlu5bo" path="res://assets/BackGround/wallBackground.png" id="6_ohqnk"]
 [ext_resource type="PackedScene" uid="uid://dmqlieh7sp357" path="res://scenes/wheel.tscn" id="6_shiux"]
 [ext_resource type="Texture2D" uid="uid://d2hwi0hkbv8ym" path="res://assets/sky.png" id="7_tipki"]
 [ext_resource type="Texture2D" uid="uid://bvw4i8a6itq44" path="res://assets/verd.png" id="8_12d7q"]
 [ext_resource type="PackedScene" uid="uid://bcvgmxy5cngw2" path="res://scenes/presure_plate.tscn" id="10_nupkd"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_26pgj"]
-texture = ExtResource("2_o8odp")
-texture_region_size = Vector2i(8, 8)
-0:0/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_dkga6"]
-tile_size = Vector2i(8, 8)
-sources/2 = SubResource("TileSetAtlasSource_26pgj")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_lyxkq"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_in81v"]
 shader = ExtResource("1_68mvh")
-shader_parameter/strength = 0.9
+shader_parameter/strength = 0.5
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_dg7ii"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_gbuvm"]
 viewport_path = NodePath("Torre/Scene/SubViewport")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a8p2b"]
 size = Vector2(168, 8)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wpxm5"]
+texture = ExtResource("8_uskqj")
+texture_region_size = Vector2i(11, 5)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-5.5, -2.5, 5.5, -2.5, 5.5, 2.5, -5.5, 2.5)
+
+[sub_resource type="TileSet" id="TileSet_f80v3"]
+tile_size = Vector2i(11, 5)
+physics_layer_0/collision_layer = 4
+physics_layer_0/collision_mask = 0
+sources/0 = SubResource("TileSetAtlasSource_wpxm5")
 
 [node name="Main" type="Node2D"]
 
 [node name="Torre" type="Node2D" parent="."]
 script = ExtResource("1_ufjuo")
 
-[node name="Scene" type="CanvasLayer" parent="Torre"]
-layer = -1
-
-[node name="SkyBackground" type="Sprite2D" parent="Torre/Scene"]
-position = Vector2(44, 60)
-texture = ExtResource("2_68mvh")
+[node name="Scene" type="Node2D" parent="Torre"]
 
 [node name="SubViewport" type="SubViewport" parent="Torre/Scene"]
 size = Vector2i(88, 120)
 
-[node name="TowerTileMap" type="TileMapLayer" parent="Torre/Scene/SubViewport"]
-tile_map_data = PackedByteArray("AAACAA4AAgAAAAAAAAADAA4AAgAAAAAAAAAEAA4AAgAAAAAAAAAFAA4AAgAAAAAAAAAGAA4AAgAAAAAAAAACAAsAAgAAAAAAAAACAAwAAgAAAAAAAAACAA0AAgAAAAAAAAADAAsAAgAAAAAAAAADAAwAAgAAAAAAAAADAA0AAgAAAAAAAAAEAAsAAgAAAAAAAAAEAAwAAgAAAAAAAAAEAA0AAgAAAAAAAAAFAAsAAgAAAAAAAAAFAAwAAgAAAAAAAAAFAA0AAgAAAAAAAAAGAAsAAgAAAAAAAAAGAAwAAgAAAAAAAAAGAA0AAgAAAAAAAAACAAAAAgAAAAAAAAACAAEAAgAAAAAAAAACAAIAAgAAAAAAAAACAAQAAgAAAAAAAAACAAUAAgAAAAAAAAACAAcAAgAAAAAAAAACAAgAAgAAAAAAAAACAAkAAgAAAAAAAAACAAoAAgAAAAAAAAADAAAAAgAAAAAAAAADAAEAAgAAAAAAAAADAAgAAgAAAAAAAAADAAkAAgAAAAAAAAADAAoAAgAAAAAAAAAEAAAAAgAAAAAAAAAEAAEAAgAAAAAAAAAEAAIAAgAAAAAAAAAEAAMAAgAAAAAAAAAEAAQAAgAAAAAAAAAEAAUAAgAAAAAAAAAEAAcAAgAAAAAAAAAEAAgAAgAAAAAAAAAEAAkAAgAAAAAAAAAEAAoAAgAAAAAAAAAFAAAAAgAAAAAAAAAFAAEAAgAAAAAAAAAFAAIAAgAAAAAAAAAFAAMAAgAAAAAAAAAFAAQAAgAAAAAAAAAFAAUAAgAAAAAAAAAFAAYAAgAAAAAAAAAFAAcAAgAAAAAAAAAFAAgAAgAAAAAAAAAFAAkAAgAAAAAAAAAFAAoAAgAAAAAAAAAGAAAAAgAAAAAAAAAGAAEAAgAAAAAAAAAGAAIAAgAAAAAAAAAGAAMAAgAAAAAAAAAGAAQAAgAAAAAAAAAGAAUAAgAAAAAAAAAGAAYAAgAAAAAAAAAGAAcAAgAAAAAAAAAGAAgAAgAAAAAAAAAGAAkAAgAAAAAAAAAGAAoAAgAAAAAAAAAAAAAAAgAAAAAAAAAAAAEAAgAAAAAAAAAAAAIAAgAAAAAAAAAAAAMAAgAAAAAAAAAAAAQAAgAAAAAAAAAAAAUAAgAAAAAAAAAAAAYAAgAAAAAAAAAAAAcAAgAAAAAAAAAAAAgAAgAAAAAAAAAAAAkAAgAAAAAAAAAAAAoAAgAAAAAAAAAAAAsAAgAAAAAAAAAAAAwAAgAAAAAAAAAAAA0AAgAAAAAAAAAAAA4AAgAAAAAAAAABAAAAAgAAAAAAAAABAAEAAgAAAAAAAAABAAIAAgAAAAAAAAABAAMAAgAAAAAAAAABAAQAAgAAAAAAAAABAAUAAgAAAAAAAAABAAYAAgAAAAAAAAABAAcAAgAAAAAAAAABAAgAAgAAAAAAAAABAAkAAgAAAAAAAAABAAoAAgAAAAAAAAABAAsAAgAAAAAAAAABAAwAAgAAAAAAAAABAA0AAgAAAAAAAAABAA4AAgAAAAAAAAADAAcAAgAAAAAAAAACAAMAAgAAAAAAAAACAAYAAgAAAAAAAAADAAIAAgAAAAAAAAADAAMAAgAAAAAAAAADAAQAAgAAAAAAAAADAAUAAgAAAAAAAAADAAYAAgAAAAAAAAAEAAYAAgAAAAAAAAAHAAAAAgAAAAAAAAAHAAEAAgAAAAAAAAAHAAIAAgAAAAAAAAAHAAMAAgAAAAAAAAAHAAQAAgAAAAAAAAAHAAUAAgAAAAAAAAAHAAYAAgAAAAAAAAAHAAcAAgAAAAAAAAAHAAgAAgAAAAAAAAAHAAkAAgAAAAAAAAAHAAoAAgAAAAAAAAAHAAsAAgAAAAAAAAAHAAwAAgAAAAAAAAAHAA0AAgAAAAAAAAAHAA4AAgAAAAAAAAAIAAAAAgAAAAAAAAAIAAEAAgAAAAAAAAAIAAIAAgAAAAAAAAAIAAMAAgAAAAAAAAAIAAQAAgAAAAAAAAAIAAUAAgAAAAAAAAAIAAYAAgAAAAAAAAAIAAcAAgAAAAAAAAAIAAgAAgAAAAAAAAAIAAkAAgAAAAAAAAAIAAoAAgAAAAAAAAAIAAsAAgAAAAAAAAAIAAwAAgAAAAAAAAAIAA0AAgAAAAAAAAAIAA4AAgAAAAAAAAAJAAAAAgAAAAAAAAAJAAEAAgAAAAAAAAAJAAIAAgAAAAAAAAAJAAMAAgAAAAAAAAAJAAQAAgAAAAAAAAAJAAUAAgAAAAAAAAAJAAYAAgAAAAAAAAAJAAcAAgAAAAAAAAAJAAgAAgAAAAAAAAAJAAkAAgAAAAAAAAAJAAoAAgAAAAAAAAAJAAsAAgAAAAAAAAAJAAwAAgAAAAAAAAAJAA0AAgAAAAAAAAAJAA4AAgAAAAAAAAAKAAAAAgAAAAAAAAAKAAEAAgAAAAAAAAAKAAIAAgAAAAAAAAAKAAMAAgAAAAAAAAAKAAQAAgAAAAAAAAAKAAUAAgAAAAAAAAAKAAYAAgAAAAAAAAAKAAcAAgAAAAAAAAAKAAgAAgAAAAAAAAAKAAkAAgAAAAAAAAAKAAoAAgAAAAAAAAAKAAsAAgAAAAAAAAAKAAwAAgAAAAAAAAAKAA0AAgAAAAAAAAAKAA4AAgAAAAAAAAALAAAAAgAAAAAAAAALAAEAAgAAAAAAAAALAAIAAgAAAAAAAAALAAMAAgAAAAAAAAALAAQAAgAAAAAAAAALAAUAAgAAAAAAAAALAAYAAgAAAAAAAAALAAcAAgAAAAAAAAALAAgAAgAAAAAAAAALAAkAAgAAAAAAAAALAAoAAgAAAAAAAAALAAsAAgAAAAAAAAALAAwAAgAAAAAAAAALAA0AAgAAAAAAAAALAA4AAgAAAAAAAAAMAAAAAgAAAAAAAAAMAAEAAgAAAAAAAAAMAAIAAgAAAAAAAAAMAAMAAgAAAAAAAAAMAAQAAgAAAAAAAAAMAAUAAgAAAAAAAAAMAAYAAgAAAAAAAAAMAAcAAgAAAAAAAAAMAAgAAgAAAAAAAAAMAAkAAgAAAAAAAAAMAAoAAgAAAAAAAAAMAAsAAgAAAAAAAAAMAAwAAgAAAAAAAAAMAA0AAgAAAAAAAAAMAA4AAgAAAAAAAAD+/wAAAgAAAAAAAAD+/wEAAgAAAAAAAAD+/wIAAgAAAAAAAAD+/wMAAgAAAAAAAAD+/wQAAgAAAAAAAAD+/wUAAgAAAAAAAAD+/wYAAgAAAAAAAAD+/wcAAgAAAAAAAAD+/wgAAgAAAAAAAAD+/wkAAgAAAAAAAAD+/woAAgAAAAAAAAD+/wsAAgAAAAAAAAD+/wwAAgAAAAAAAAD+/w0AAgAAAAAAAAD+/w4AAgAAAAAAAAD//wAAAgAAAAAAAAD//wEAAgAAAAAAAAD//wIAAgAAAAAAAAD//wMAAgAAAAAAAAD//wQAAgAAAAAAAAD//wUAAgAAAAAAAAD//wYAAgAAAAAAAAD//wcAAgAAAAAAAAD//wgAAgAAAAAAAAD//wkAAgAAAAAAAAD//woAAgAAAAAAAAD//wsAAgAAAAAAAAD//wwAAgAAAAAAAAD//w0AAgAAAAAAAAD//w4AAgAAAAAAAAA=")
-tile_set = SubResource("TileSet_dkga6")
+[node name="WallBackground" type="Sprite2D" parent="Torre/Scene/SubViewport"]
+texture = ExtResource("6_ohqnk")
+offset = Vector2(44, 60)
 
-[node name="Tower" type="TextureRect" parent="Torre/Scene"]
-material = SubResource("ShaderMaterial_lyxkq")
-offset_right = 88.0
-offset_bottom = 120.0
-texture = SubResource("ViewportTexture_dg7ii")
-expand_mode = 4
+[node name="Sprite2D" type="Sprite2D" parent="Torre/Scene"]
+material = SubResource("ShaderMaterial_in81v")
+position = Vector2(44, 60)
+texture = SubResource("ViewportTexture_gbuvm")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Torre/Scene"]
+
+[node name="SkyBackground" type="Sprite2D" parent="Torre/Scene/ParallaxBackground"]
+position = Vector2(44, 60)
+texture = ExtResource("2_68mvh")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Torre/Scene/ParallaxBackground"]
+motion_scale = Vector2(2, 1)
+
+[node name="Clouds" type="Sprite2D" parent="Torre/Scene/ParallaxBackground/ParallaxLayer"]
+position = Vector2(8, 60)
+texture = ExtResource("5_rgnqb")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="Torre/Scene/ParallaxBackground"]
+
+[node name="Clouds" type="Sprite2D" parent="Torre/Scene/ParallaxBackground/ParallaxLayer2"]
+position = Vector2(-19, 97)
+texture = ExtResource("5_rgnqb")
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="Torre/Scene/ParallaxBackground"]
+
+[node name="Clouds" type="Sprite2D" parent="Torre/Scene/ParallaxBackground/ParallaxLayer3"]
+position = Vector2(100, 43)
+texture = ExtResource("5_rgnqb")
 
 [node name="Torre1" type="Node2D" parent="Torre"]
 position = Vector2(-40, 0)
-
-[node name="enemy" parent="Torre/Torre1" instance=ExtResource("6_shiux")]
-position = Vector2(20, 107)
-
-[node name="platform" parent="Torre/Torre1" instance=ExtResource("2_tjxcq")]
-position = Vector2(9, 112)
-
-[node name="platform2" parent="Torre/Torre1" instance=ExtResource("2_tjxcq")]
-position = Vector2(20, 112)
-
-[node name="platform3" parent="Torre/Torre1" instance=ExtResource("2_tjxcq")]
-position = Vector2(31, 112)
 
 [node name="Ground" type="StaticBody2D" parent="Torre/Torre1"]
 position = Vector2(84, 116)
@@ -82,19 +91,21 @@ texture = ExtResource("6_lyxkq")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Torre/Torre1/Ground"]
 shape = SubResource("RectangleShape2D_a8p2b")
 
-[node name="Sprite2D" type="Sprite2D" parent="Torre/Torre1"]
-position = Vector2(84, 148)
-scale = Vector2(34.2816, 13.7017)
-texture = ExtResource("8_12d7q")
+[node name="TileMapLayer" type="TileMapLayer" parent="Torre/Torre1"]
+position = Vector2(0, 2)
+tile_map_data = PackedByteArray(0, 0, 0, 0, 21, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 19, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 17, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+tile_set = SubResource("TileSet_f80v3")
+
+[node name="enemy" parent="Torre/Torre1" instance=ExtResource("6_shiux")]
+position = Vector2(20, 107)
 
 [node name="Torre2" type="Node2D" parent="Torre"]
 position = Vector2(16, 0.5)
 
-[node name="platform" parent="Torre/Torre2" instance=ExtResource("2_tjxcq")]
-position = Vector2(29, 111.5)
-
-[node name="platform2" parent="Torre/Torre2" instance=ExtResource("2_tjxcq")]
-position = Vector2(29, 84.5)
+[node name="TileMapLayer2" type="TileMapLayer" parent="Torre/Torre2"]
+position = Vector2(-56, 1.5)
+tile_map_data = PackedByteArray(0, 0, 6, 0, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 19, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 0, 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 21, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+tile_set = SubResource("TileSet_f80v3")
 
 [node name="Ground" type="StaticBody2D" parent="Torre/Torre2"]
 position = Vector2(28, 115.5)
@@ -105,25 +116,8 @@ texture = ExtResource("6_lyxkq")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Torre/Torre2/Ground"]
 shape = SubResource("RectangleShape2D_a8p2b")
 
-[node name="Sprite2D2" type="Sprite2D" parent="Torre/Torre2"]
-position = Vector2(27, 139.5)
-scale = Vector2(-34.9952, 10)
-texture = ExtResource("8_12d7q")
-
-[node name="Falme" parent="Torre" instance=ExtResource("6_5ohk7")]
-position = Vector2(44, 37)
-
 [node name="Torre3" type="Node2D" parent="Torre"]
 position = Vector2(72, 0.5)
-
-[node name="platform" parent="Torre/Torre3" instance=ExtResource("2_tjxcq")]
-position = Vector2(29, 111.5)
-
-[node name="platform3" parent="Torre/Torre3" instance=ExtResource("2_tjxcq")]
-position = Vector2(51, 101.5)
-
-[node name="platform2" parent="Torre/Torre3" instance=ExtResource("2_tjxcq")]
-position = Vector2(40, 106.5)
 
 [node name="Ground" type="StaticBody2D" parent="Torre/Torre3"]
 position = Vector2(-28, 115.5)
@@ -134,10 +128,10 @@ texture = ExtResource("6_lyxkq")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Torre/Torre3/Ground"]
 shape = SubResource("RectangleShape2D_a8p2b")
 
-[node name="Sprite2D" type="Sprite2D" parent="Torre/Torre3"]
-position = Vector2(-28, 149.5)
-scale = Vector2(34.2816, 13.7017)
-texture = ExtResource("8_12d7q")
+[node name="TileMapLayer3" type="TileMapLayer" parent="Torre/Torre3"]
+position = Vector2(-112, 1.5)
+tile_map_data = PackedByteArray(0, 0, 10, 0, 21, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11, 0, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12, 0, 19, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 0, 18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 14, 0, 17, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+tile_set = SubResource("TileSet_f80v3")
 
 [node name="StaticBody2D" parent="Torre/Torre3" instance=ExtResource("10_nupkd")]
 position = Vector2(31, 83.5)

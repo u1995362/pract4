@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=3 uid="uid://dmqlieh7sp357"]
 
-[ext_resource type="Script" path="res://scripts/wheel.gd" id="1_x4kq5"]
-[ext_resource type="Texture2D" uid="uid://dcyerohq6rge7" path="res://assets/enemySpriteSheet.png" id="2_7qdcw"]
+[ext_resource type="Script" path="res://scripts/Enemies/wheel.gd" id="1_wrdvb"]
+[ext_resource type="Texture2D" uid="uid://dcyerohq6rge7" path="res://assets/Characters/wheel.png" id="2_7qdcw"]
 [ext_resource type="Script" path="res://scripts/resources/hurtbox.gd" id="3_c5tp1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xs5c8"]
@@ -96,7 +96,7 @@ size = Vector2(8, 8)
 [node name="enemy" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 0
-script = ExtResource("1_x4kq5")
+script = ExtResource("1_wrdvb")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -5)

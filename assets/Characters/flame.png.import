@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cpl2hmmcr2h6b"
-path="res://.godot/imported/wallTile.png-b9ef36e043f22d9d96da60fe4acd1fb0.ctex"
+uid="uid://bv5b8wov2128o"
+path="res://.godot/imported/flame.png-6f8c555635ea04d05c43b6dc37ba0a7e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/wallTile.png"
-dest_files=["res://.godot/imported/wallTile.png-b9ef36e043f22d9d96da60fe4acd1fb0.ctex"]
+source_file="res://assets/Characters/flame.png"
+dest_files=["res://.godot/imported/flame.png-6f8c555635ea04d05c43b6dc37ba0a7e.ctex"]
 
 [params]
 
