@@ -2,7 +2,7 @@ extends Node2D
 
 const TOWER_WIDTH : int = 6 * 11 
 const TILE_SIZE : int = 8
-const SPEED : int = 8.0
+const SPEED : float = 8.0
 
 @onready var Player := $"../slime"
 
@@ -36,11 +36,11 @@ func check_tower_wrap() -> void:
 		innerTower.position.x -= TILE_SIZE
 
 func check_wrap() -> void:
-	if playerX > Mid.position.x + TOWER_WIDTH / 2:
+	if playerX > Mid.position.x + TOWER_WIDTH / 2.0:
 		Left.position.x = Right.position.x + TOWER_WIDTH
 		_rotate_right()
 	
-	elif playerX < Mid.position.x - TOWER_WIDTH / 2:
+	elif playerX < Mid.position.x - TOWER_WIDTH / 2.0:
 		Right.position.x = Left.position.x - TOWER_WIDTH
 		_rotate_left()
 

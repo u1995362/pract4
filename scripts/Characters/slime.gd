@@ -246,5 +246,5 @@ func _on_coyote_timer_timeout():
 		coyote = false
 	$CoyoteTimer.stop()
 
-func take_dmg(dmg:int) -> void:
+func take_dmg(_dmg:int) -> void:
 	actual_state = state.DEAD 

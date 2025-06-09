@@ -9,6 +9,6 @@ func _ready() -> void:
 
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("retry"):
 		get_tree().change_scene_to_file("res://scenes/main.tscn")

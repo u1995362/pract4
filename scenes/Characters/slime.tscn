@@ -491,10 +491,12 @@ gravity = Vector3(0, 9.8, 0)
 color = Color(0.533333, 0.752941, 0.439216, 1)
 
 [node name="slime" type="CharacterBody2D"]
+use_parent_material = true
 collision_mask = 5
 script = ExtResource("1_26lqt")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+use_parent_material = true
 position = Vector2(0, -4)
 texture = ExtResource("2_3t2co")
 hframes = 4
@@ -533,6 +535,7 @@ target_position = Vector2(0, -5)
 collision_mask = 4
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+use_parent_material = true
 position = Vector2(0, -4)
 emitting = false
 amount = 20
