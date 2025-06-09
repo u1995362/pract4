@@ -1,4 +1,4 @@
-extends Avatar
+class_name Slime extends Avatar
 
 @onready var animation_tree:AnimationTree = $Sprite2D/AnimationTree
 @onready var animation_state=  animation_tree.get("parameters/playback")
@@ -89,7 +89,6 @@ func update_state(delta: float) -> void:
 					actual_state = state.JUMPING
 	
 	movement()
-	
 
 func movement() -> void:
 	velocity.x = 0
@@ -211,7 +210,6 @@ func update_animation() -> void:
 		state.CRAWLING:
 			animation_state.travel("Crouch")
 			animation_tree.set("parameters/Crouch/blend_position", direction)
-
 
 func _on_coyote_timer_timeout():
 	if !is_on_floor():

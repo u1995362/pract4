@@ -1,4 +1,4 @@
-class_name Enemy extends Avatar
+class_name Wheel extends Avatar
 
 const SPEED = 5.0
 

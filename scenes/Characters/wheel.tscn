@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://dmqlieh7sp357"]
 
-[ext_resource type="Script" path="res://scripts/Enemies/wheel.gd" id="1_wrdvb"]
+[ext_resource type="Script" path="res://scripts/Characters/wheel.gd" id="1_wrdvb"]
 [ext_resource type="Texture2D" uid="uid://dcyerohq6rge7" path="res://assets/Characters/wheel.png" id="2_7qdcw"]
 [ext_resource type="Script" path="res://scripts/resources/hurtbox.gd" id="3_c5tp1"]
 
@@ -88,17 +88,20 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nvruf"]
-radius = 5.0
+radius = 4.9
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3t2co"]
-size = Vector2(8, 8)
+[sub_resource type="CircleShape2D" id="CircleShape2D_tuq7c"]
+radius = 4.12311
 
-[node name="enemy" type="CharacterBody2D"]
+[node name="wheel" type="CharacterBody2D"]
+use_parent_material = true
 collision_layer = 2
 collision_mask = 4
+motion_mode = 1
 script = ExtResource("1_wrdvb")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+use_parent_material = true
 position = Vector2(0, -5)
 sprite_frames = SubResource("SpriteFrames_2x4h2")
 animation = &"walk_left"
@@ -113,24 +116,24 @@ script = ExtResource("3_c5tp1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2(0, -5)
-shape = SubResource("RectangleShape2D_3t2co")
+shape = SubResource("CircleShape2D_tuq7c")
 
 [node name="RayCast2DL" type="RayCast2D" parent="."]
-position = Vector2(-4.5, -4)
-target_position = Vector2(-0.5, 5)
+position = Vector2(-4, -5)
+target_position = Vector2(-0.5, 6)
 collision_mask = 4
 
 [node name="RayCast2DL2" type="RayCast2D" parent="."]
-position = Vector2(-4.5, -4)
-target_position = Vector2(-2, 0)
-collision_mask = 4
+position = Vector2(-4, -5)
+target_position = Vector2(-1, 0)
+collision_mask = 6
 
 [node name="RayCast2DR" type="RayCast2D" parent="."]
-position = Vector2(4.5, -4)
-target_position = Vector2(0.5, 5)
+position = Vector2(4, -5)
+target_position = Vector2(0.5, 6)
 collision_mask = 4
 
 [node name="RayCast2DR2" type="RayCast2D" parent="."]
-position = Vector2(4.5, -4)
-target_position = Vector2(2, 0)
-collision_mask = 4
+position = Vector2(4, -5)
+target_position = Vector2(1, 0)
+collision_mask = 6

@@ -1,6 +1,6 @@
-[gd_scene load_steps=40 format=3 uid="uid://c3cpiois8vxd3"]
+[gd_scene load_steps=38 format=3 uid="uid://c3cpiois8vxd3"]
 
-[ext_resource type="Script" path="res://scripts/slime.gd" id="1_26lqt"]
+[ext_resource type="Script" path="res://scripts/Characters/slime.gd" id="1_26lqt"]
 [ext_resource type="Texture2D" uid="uid://c8o14nly6t0je" path="res://assets/Characters/slime.png" id="2_3t2co"]
 
 [sub_resource type="Animation" id="Animation_3t2co"]
@@ -41,6 +41,30 @@ tracks/2/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../RayCrouchL:enabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../RayCrouchR:enabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_tlmay"]
 resource_name = "crouch_left"
@@ -54,7 +78,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(8, 4)]
+"values": [Vector2(10, 4)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -80,6 +104,30 @@ tracks/2/keys = {
 "update": 1,
 "values": [12]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../RayCrouchL:enabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../RayCrouchR:enabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_20jag"]
 resource_name = "crouch_right"
@@ -93,7 +141,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(8, 4)]
+"values": [Vector2(10, 4)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -118,6 +166,30 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [13]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../RayCrouchL:enabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../RayCrouchR:enabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_ckuph"]
@@ -216,41 +288,9 @@ tracks/0/keys = {
 "values": [8, 9, 10]
 }
 
-[sub_resource type="Animation" id="Animation_ap8ko"]
-resource_name = "charge_left"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [4]
-}
-
-[sub_resource type="Animation" id="Animation_sgejl"]
-resource_name = "charge_right"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [8]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ba23w"]
 _data = {
 "RESET": SubResource("Animation_3t2co"),
-"charge_left": SubResource("Animation_ap8ko"),
-"charge_right": SubResource("Animation_sgejl"),
 "crouch_left": SubResource("Animation_tlmay"),
 "crouch_right": SubResource("Animation_20jag"),
 "fall_left": SubResource("Animation_ckuph"),
@@ -383,18 +423,17 @@ parameters/Jump/blend_position = -1.25371
 position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_3t2co")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(0, -37.23)
-
 [node name="CoyoteTimer" type="Timer" parent="."]
 
 [node name="RayCrouchL" type="RayCast2D" parent="."]
 position = Vector2(-3, -2)
+enabled = false
 target_position = Vector2(0, -5)
 collision_mask = 4
 
 [node name="RayCrouchR" type="RayCast2D" parent="."]
 position = Vector2(3, -2)
+enabled = false
 target_position = Vector2(0, -5)
 collision_mask = 4
 

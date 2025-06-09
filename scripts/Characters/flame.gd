@@ -1,4 +1,4 @@
-extends CharacterBody2D
+class_name Flame extends Avatar
 
 var speed := 60.0
 var direction := 1
