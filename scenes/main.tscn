@@ -129,7 +129,6 @@ position = Vector2(44, 0)
 
 [node name="slime" parent="." instance=ExtResource("1_lkb1x")]
 position = Vector2(39, 115)
-slime_scene = ExtResource("1_lkb1x")
 
 [node name="Camera2D2" type="Camera2D" parent="slime"]
 position = Vector2(0, -20)

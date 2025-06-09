@@ -2,7 +2,6 @@ class_name Slime extends Avatar
 
 @onready var animation_tree:AnimationTree = $Sprite2D/AnimationTree
 @onready var animation_state=  animation_tree.get("parameters/playback")
-@export var slime_scene: PackedScene
 
 @onready var rayCL: RayCast2D = $RayCrouchL
 @onready var rayCR: RayCast2D = $RayCrouchR
@@ -10,18 +9,28 @@ class_name Slime extends Avatar
 var direction: int = 1
 
 const SPEED : float = 30.0
+const SPEED_JUMPING : float = 30.0
+const SPEED_FALLING : float = 30.0
+const SPEED_CRAWLING : float = 20.0
+const SPEED_DEAD : float = 0.0
+
+
+
 const JUMP_DISTANCE : float = 3 * 8
 const JUMP_TIME : float = 0.5
-const JUMP_SPEED : float = ( -2 * JUMP_DISTANCE ) / ( JUMP_TIME ) 
+const JUMP_IMPULSE : float = ( -2 * JUMP_DISTANCE ) / ( JUMP_TIME ) 
 const GRAVITY : float = ( 2 * JUMP_DISTANCE ) / ( JUMP_TIME * JUMP_TIME ) 
 const JUMP_MOON : float = 0.8
 const FALL_FAST : float = 1.8
 
 
+
+
+
 #Duplicacio
 #var clone: CharacterBody2D = null
 #var is_clone: bool = false
-
+#@export var slime_scene: PackedScene
 
 
 #Coyote
@@ -33,7 +42,8 @@ enum state {
 	IDDLE,
 	JUMPING,
 	FALLING,
-	CRAWLING
+	CRAWLING,
+	DEAD
 }
 var actual_state : state = state.IDDLE
 
@@ -87,7 +97,9 @@ func update_state(delta: float) -> void:
 				elif Input.is_action_pressed("jump"):
 					jump()
 					actual_state = state.JUMPING
-	
+		state.DEAD:
+			if !is_on_floor():
+				velocity.y += GRAVITY * delta
 	movement()
 
 func movement() -> void:
@@ -95,12 +107,26 @@ func movement() -> void:
 	var current_direction = int(Input.get_axis("move_left", "move_right"))
 	if current_direction: 
 		direction = current_direction
-		velocity.x = direction * SPEED
+		var speed: float
+		
+		match actual_state:
+			state.IDDLE:
+				speed = SPEED
+			state.JUMPING:
+				speed = SPEED_JUMPING
+			state.FALLING:
+				speed = SPEED_FALLING
+			state.CRAWLING:
+				speed = SPEED_CRAWLING
+			state.DEAD:
+				speed = SPEED_DEAD
+		
+		velocity.x = direction * speed
 	move_and_slide()
 
 func jump() -> void:
 	coyote = false
-	velocity.y = JUMP_SPEED
+	velocity.y = JUMP_IMPULSE
 
 func jump_handler(delta: float) -> void:
 	var gravity_mod : float = 1
@@ -210,8 +236,15 @@ func update_animation() -> void:
 		state.CRAWLING:
 			animation_state.travel("Crouch")
 			animation_tree.set("parameters/Crouch/blend_position", direction)
+		
+		state.DEAD:
+			animation_state.travel("Dead")
+			animation_tree.set("parameters/Dead/blend_position", direction)
 
 func _on_coyote_timer_timeout():
 	if !is_on_floor():
 		coyote = false
 	$CoyoteTimer.stop()
+
+func take_dmg(dmg:int) -> void:
+	actual_state = state.DEAD 

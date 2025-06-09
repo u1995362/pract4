@@ -7,3 +7,9 @@ func _ready() -> void:
 	print(sh)
 	sh.set_shader_parameter("ScreenWidth",88)
 	sh.set_shader_parameter("RealScreenWidth",880)
+
+
+
+func _physics_process(delta: float) -> void:
+	if Input.is_action_just_pressed("retry"):
+		print("patata")

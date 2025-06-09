@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://c3cpiois8vxd3"]
+[gd_scene load_steps=44 format=3 uid="uid://c3cpiois8vxd3"]
 
 [ext_resource type="Script" path="res://scripts/Characters/slime.gd" id="1_26lqt"]
 [ext_resource type="Texture2D" uid="uid://c8o14nly6t0je" path="res://assets/Characters/slime.png" id="2_3t2co"]
@@ -60,6 +60,18 @@ tracks/4/path = NodePath("../RayCrouchR:enabled")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../GPUParticles2D:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -288,11 +300,67 @@ tracks/0/keys = {
 "values": [8, 9, 10]
 }
 
+[sub_resource type="Animation" id="Animation_20oxe"]
+resource_name = "dead_left"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [12]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../GPUParticles2D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_hy5b4"]
+resource_name = "dead_right"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [13]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../GPUParticles2D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ba23w"]
 _data = {
 "RESET": SubResource("Animation_3t2co"),
 "crouch_left": SubResource("Animation_tlmay"),
 "crouch_right": SubResource("Animation_20jag"),
+"dead_left": SubResource("Animation_20oxe"),
+"dead_right": SubResource("Animation_hy5b4"),
 "fall_left": SubResource("Animation_ckuph"),
 "fall_right": SubResource("Animation_brl6k"),
 "iddle_left": SubResource("Animation_2bt0v"),
@@ -311,6 +379,18 @@ animation = &"crouch_right"
 blend_point_0/node = SubResource("AnimationNodeAnimation_r5t3j")
 blend_point_0/pos = -1.0
 blend_point_1/node = SubResource("AnimationNodeAnimation_l47v3")
+blend_point_1/pos = 1.0
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yl4wh"]
+animation = &"dead_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4c410"]
+animation = &"dead_right"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_0u71v"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_yl4wh")
+blend_point_0/pos = -1.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_4c410")
 blend_point_1/pos = 1.0
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_epd2e"]
@@ -382,7 +462,9 @@ advance_mode = 2
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_gs4ul"]
 states/Crouch/node = SubResource("AnimationNodeBlendSpace1D_6tsta")
 states/Crouch/position = Vector2(405.95, 236.587)
-states/End/position = Vector2(761, 85.4587)
+states/Dead/node = SubResource("AnimationNodeBlendSpace1D_0u71v")
+states/Dead/position = Vector2(695.95, 87.2746)
+states/End/position = Vector2(853.5, 86.2669)
 states/Fall/node = SubResource("AnimationNodeBlendSpace1D_epd2e")
 states/Fall/position = Vector2(511, 91.5774)
 states/Iddle/node = SubResource("AnimationNodeBlendSpace1D_fbnxs")
@@ -391,10 +473,22 @@ states/Jump/node = SubResource("AnimationNodeBlendSpace1D_55p85")
 states/Jump/position = Vector2(407.35, -32.4226)
 states/Start/position = Vector2(117.5, 91.5757)
 transitions = ["Start", "Iddle", SubResource("AnimationNodeStateMachineTransition_17trp"), "Iddle", "Jump", SubResource("AnimationNodeStateMachineTransition_alvqa"), "Jump", "Iddle", SubResource("AnimationNodeStateMachineTransition_ut8jl"), "Iddle", "Fall", SubResource("AnimationNodeStateMachineTransition_c5loq"), "Fall", "Iddle", SubResource("AnimationNodeStateMachineTransition_ckuph"), "Fall", "Jump", SubResource("AnimationNodeStateMachineTransition_brl6k"), "Jump", "Fall", SubResource("AnimationNodeStateMachineTransition_55p85"), "Iddle", "Crouch", SubResource("AnimationNodeStateMachineTransition_t2e7j"), "Crouch", "Iddle", SubResource("AnimationNodeStateMachineTransition_tg4t3")]
-graph_offset = Vector2(-22.0499, -43.5551)
+graph_offset = Vector2(157.95, 14.4449)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3t2co"]
 size = Vector2(8, 8)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8x5px"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(4, 1, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 0, 1)
+direction = Vector3(0, 1, 0)
+spread = 90.0
+initial_velocity_min = 5.0
+initial_velocity_max = 10.0
+gravity = Vector3(0, 9.8, 0)
+color = Color(0.533333, 0.752941, 0.439216, 1)
 
 [node name="slime" type="CharacterBody2D"]
 collision_mask = 5
@@ -415,6 +509,7 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_gs4ul")
 anim_player = NodePath("../AnimationPlayer")
 parameters/Crouch/blend_position = -0.947317
+parameters/Dead/blend_position = 0
 parameters/Fall/blend_position = 0
 parameters/Iddle/blend_position = -0.114578
 parameters/Jump/blend_position = -1.25371
@@ -436,5 +531,11 @@ position = Vector2(3, -2)
 enabled = false
 target_position = Vector2(0, -5)
 collision_mask = 4
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(0, -4)
+emitting = false
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_8x5px")
 
 [connection signal="timeout" from="CoyoteTimer" to="." method="_on_coyote_timer_timeout"]
