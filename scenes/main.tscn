@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://d1q7xp11tjvtf"]
+[gd_scene load_steps=15 format=4 uid="uid://d1q7xp11tjvtf"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_7tdli"]
 [ext_resource type="Shader" path="res://distorsio.gdshader" id="1_68mvh"]
@@ -22,6 +22,10 @@ shader_parameter/strength = 0.5
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_gbuvm"]
 viewport_path = NodePath("Tower/Scene/TowerViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qvl6n"]
+shader = ExtResource("1_68mvh")
+shader_parameter/strength = 0.5
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_7tdli")
@@ -91,8 +95,13 @@ position = Vector2(-22, 0)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="Tower/Tower1"]
 use_parent_material = true
-tile_map_data = PackedByteArray("AAACABcAAAAAAAAAAAABABcAAAAAAAAAAAAAABcAAAAAAAAAAAD9/xcAAAAAAAAAAAD+/xcAAAAAAAAAAAD//xcAAAAAAAAAAAABABYAAAAAAAAAAAAAABMAAAAAAAAAAAD//w8AAAAAAAAAAAD+/woAAAAAAAAAAAABAAkAAAAAAAAAAAD9/wMAAAAAAAAAAAD+/wMAAAAAAAAAAAD//wMAAAAAAAAAAAAAAAMAAAAAAAAAAAABAAMAAAAAAAAAAAACAAMAAAAAAAAAAAD9//H/AAAAAAAAAAD+//L/AAAAAAAAAAD///P/AAAAAAAAAAAAAPT/AAAAAAAAAAABAPX/AAAAAAAAAAACAPb/AAAAAAAAAAD9//r/AAAAAAAAAAD+//r/AAAAAAAAAAD///r/AAAAAAAAAAAAAPr/AAAAAAAAAAABAPr/AAAAAAAAAAACAPr/AAAAAAAAAAD9/wAAAAAAAAAAAAD+/wEAAAAAAAAAAAD//wIAAAAAAAAAAAD9/wEAAAAAAAAAAAD9/wIAAAAAAAAAAAD+/wIAAAAAAAAAAAABAPH/AAAAAAAAAAACAPH/AAAAAAAAAAAAAPD/AAAAAAAAAAD//+//AAAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAACABcAAAAAAAAAAAABABcAAAAAAAAAAAAAABcAAAAAAAAAAAD9/xcAAAAAAAAAAAD+/xcAAAAAAAAAAAD//xcAAAAAAAAAAAABABYAAAAAAAAAAAAAABMAAAAAAAAAAAD//w8AAAAAAAAAAAD+/woAAAAAAAAAAAABAAkAAAAAAAAAAAD9/wMAAAAAAAAAAAD+/wMAAAAAAAAAAAD//wMAAAAAAAAAAAAAAAMAAAAAAAAAAAABAAMAAAAAAAAAAAACAAMAAAAAAAAAAAD9//H/AAAAAAAAAAD+//L/AAAAAAAAAAD///P/AAAAAAAAAAAAAPT/AAAAAAAAAAABAPX/AAAAAAAAAAACAPb/AAAAAAAAAAD9//r/AAAAAAAAAAD+//r/AAAAAAAAAAD///r/AAAAAAAAAAAAAPr/AAAAAAAAAAABAPr/AAAAAAAAAAACAPr/AAAAAAAAAAD9/wAAAAAAAAAAAAD+/wEAAAAAAAAAAAD//wIAAAAAAAAAAAD9/wEAAAAAAAAAAAD9/wIAAAAAAAAAAAD+/wIAAAAAAAAAAAABAPH/AQAAAAAAAAACAPH/AQAAAAAAAAD+//H/AQAAAAAAAAD///H/AQAAAAAAAAAAAPH/AQAAAAAAAAA=")
 tile_set = ExtResource("7_orpcr")
+
+[node name="Enemies" type="Node2D" parent="Tower/Tower1"]
+
+[node name="wheel" parent="Tower/Tower1/Enemies" instance=ExtResource("6_shiux")]
+position = Vector2(17, 15)
 
 [node name="Tower2" type="Node2D" parent="Tower"]
 use_parent_material = true
@@ -103,16 +112,15 @@ use_parent_material = true
 tile_map_data = PackedByteArray("AAD9/xcAAAAAAAAAAAD+/xcAAAAAAAAAAAD//xcAAAAAAAAAAAAAABcAAAAAAAAAAAABABcAAAAAAAAAAAACABcAAAAAAAAAAAD9/xMAAAAAAAAAAAD9/xQAAAAAAAAAAAD9/xUAAAAAAAAAAAD9/xYAAAAAAAAAAAD9/xAAAAAAAAAAAAD9/xEAAAAAAAAAAAD9/xIAAAAAAAAAAAD+/xAAAAAAAAAAAAD//xAAAAAAAAAAAAAAABAAAAAAAAAAAAABABAAAAAAAAAAAAABABEAAAAAAAAAAAABABIAAAAAAAAAAAABABMAAAAAAAAAAAACABMAAAAAAAAAAAD9/w8AAAAAAAAAAAD//w0AAAAAAAAAAAD9/woAAAAAAAAAAAD9/wkAAAAAAAAAAAD+/wkAAAAAAAAAAAD//wkAAAAAAAAAAAAAAAkAAAAAAAAAAAABAAkAAAAAAAAAAAACAAkAAAAAAAAAAAD9/wMAAAAAAAAAAAD+/wMAAAAAAAAAAAD//wMAAAAAAAAAAAAAAAMAAAAAAAAAAAABAAMAAAAAAAAAAAACAAMAAAAAAAAAAAAAAPr/AAAAAAAAAAD+//j/AAAAAAAAAAD9//f/AAAAAAAAAAD9//r/AAAAAAAAAAD+//r/AAAAAAAAAAD///r/AAAAAAAAAAABAPr/AAAAAAAAAAACAPr/AAAAAAAAAAACAAIAAAAAAAAAAAD9/wIAAAAAAAAAAAD9//H/AAAAAAAAAAD+//H/AAAAAAAAAAD///H/AAAAAAAAAAAAAPH/AAAAAAAAAAABAPH/AAAAAAAAAAACAPH/AAAAAAAAAAA=")
 tile_set = ExtResource("7_orpcr")
 
-[node name="wheel" parent="Tower/Tower2" instance=ExtResource("6_shiux")]
+[node name="Enemies" type="Node2D" parent="Tower/Tower2"]
+
+[node name="wheel" parent="Tower/Tower2/Enemies" instance=ExtResource("6_shiux")]
 position = Vector2(-16, 80)
 
-[node name="wheel2" parent="Tower/Tower2" instance=ExtResource("6_shiux")]
+[node name="wheel2" parent="Tower/Tower2/Enemies" instance=ExtResource("6_shiux")]
 position = Vector2(16, 15)
 
-[node name="wheel3" parent="Tower/Tower2" instance=ExtResource("6_shiux")]
-position = Vector2(-49, 15)
-
-[node name="wheel4" parent="Tower/Tower2" instance=ExtResource("6_shiux")]
+[node name="wheel4" parent="Tower/Tower2/Enemies" instance=ExtResource("6_shiux")]
 position = Vector2(5, -30)
 
 [node name="Tower3" type="Node2D" parent="Tower"]
@@ -128,9 +136,10 @@ tile_set = ExtResource("7_orpcr")
 position = Vector2(44, 0)
 
 [node name="slime" parent="." instance=ExtResource("1_lkb1x")]
-position = Vector2(39, 115)
+position = Vector2(38, 110)
 
 [node name="Camera2D2" type="Camera2D" parent="slime"]
+material = SubResource("ShaderMaterial_qvl6n")
 position = Vector2(0, -20)
 limit_bottom = 120
 position_smoothing_enabled = true
