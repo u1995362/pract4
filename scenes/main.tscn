@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://d1q7xp11tjvtf"]
+[gd_scene load_steps=18 format=4 uid="uid://d1q7xp11tjvtf"]
 
 [ext_resource type="Shader" path="res://distorsio.gdshader" id="1_68mvh"]
 [ext_resource type="PackedScene" uid="uid://c3cpiois8vxd3" path="res://scenes/slime.tscn" id="1_lkb1x"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dmqlieh7sp357" path="res://scenes/wheel.tscn" id="6_shiux"]
 [ext_resource type="Texture2D" uid="uid://d2hwi0hkbv8ym" path="res://assets/sky.png" id="7_tipki"]
 [ext_resource type="Texture2D" uid="uid://bvw4i8a6itq44" path="res://assets/verd.png" id="8_12d7q"]
+[ext_resource type="PackedScene" uid="uid://bcvgmxy5cngw2" path="res://scenes/presure_plate.tscn" id="10_nupkd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_26pgj"]
 texture = ExtResource("2_o8odp")
@@ -137,6 +138,9 @@ shape = SubResource("RectangleShape2D_a8p2b")
 position = Vector2(-28, 149.5)
 scale = Vector2(34.2816, 13.7017)
 texture = ExtResource("8_12d7q")
+
+[node name="StaticBody2D" parent="Torre/Torre3" instance=ExtResource("10_nupkd")]
+position = Vector2(31, 83.5)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
