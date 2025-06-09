@@ -97,6 +97,7 @@ func update_state(delta: float) -> void:
 				elif Input.is_action_pressed("jump"):
 					jump()
 					actual_state = state.JUMPING
+		
 		state.DEAD:
 			if !is_on_floor():
 				velocity.y += GRAVITY * delta

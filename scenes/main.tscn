@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://c3cpiois8vxd3" path="res://scenes/Characters/slime.tscn" id="1_lkb1x"]
 [ext_resource type="Script" path="res://scripts/tower.gd" id="1_ufjuo"]
 [ext_resource type="Texture2D" uid="uid://jyt6p5subqwj" path="res://assets/BackGround/skyBackground.png" id="2_68mvh"]
-[ext_resource type="Texture2D" uid="uid://dteto7vhevhv5" path="res://shaders/palette_red.png" id="3_g4pr3"]
 [ext_resource type="Texture2D" uid="uid://cuwr7ff4m3m7x" path="res://assets/BackGround/clouds.png" id="5_rgnqb"]
 [ext_resource type="Texture2D" uid="uid://beafma5jlu5bo" path="res://assets/BackGround/wallBackground.png" id="6_ohqnk"]
 [ext_resource type="PackedScene" uid="uid://dmqlieh7sp357" path="res://scenes/Characters/wheel.tscn" id="6_shiux"]
@@ -14,13 +13,12 @@
 [ext_resource type="Shader" path="res://shaders/paletteSwap.gdshader" id="11_swa86"]
 [ext_resource type="Texture2D" uid="uid://1erkmbnbkls6" path="res://shaders/palette_default.png" id="12_8ytc2"]
 [ext_resource type="Texture2D" uid="uid://lrvcar35b3lb" path="res://shaders/palette_blue.png" id="13_vleef"]
+[ext_resource type="PackedScene" path="res://scenes/presure_plate.tscn" id="14_1gjkc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_843tt"]
 shader = ExtResource("11_swa86")
 shader_parameter/num_colors = 5
 shader_parameter/precision = 0.01
-shader_parameter/palette_in = ExtResource("12_8ytc2")
-shader_parameter/palette_out = ExtResource("3_g4pr3")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7e70y"]
 shader = ExtResource("7_ahqv4")
@@ -31,22 +29,16 @@ shader_parameter/RealScreenWidth = null
 shader = ExtResource("11_swa86")
 shader_parameter/num_colors = 5
 shader_parameter/precision = 0.01
-shader_parameter/palette_in = ExtResource("12_8ytc2")
-shader_parameter/palette_out = ExtResource("3_g4pr3")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m5ks1"]
 shader = ExtResource("11_swa86")
 shader_parameter/num_colors = 5
 shader_parameter/precision = 0.01
-shader_parameter/palette_in = ExtResource("12_8ytc2")
-shader_parameter/palette_out = ExtResource("3_g4pr3")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ldumb"]
 shader = ExtResource("11_swa86")
 shader_parameter/num_colors = 5
 shader_parameter/precision = 0.01
-shader_parameter/palette_in = ExtResource("12_8ytc2")
-shader_parameter/palette_out = ExtResource("3_g4pr3")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6cm36"]
 shader = ExtResource("1_68mvh")
@@ -205,3 +197,6 @@ drag_vertical_enabled = true
 drag_top_margin = 0.3
 drag_bottom_margin = 0.4
 editor_draw_screen = false
+
+[node name="StaticBody2D" parent="." instance=ExtResource("14_1gjkc")]
+position = Vector2(27, -82)
