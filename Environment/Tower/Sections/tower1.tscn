@@ -20,6 +20,9 @@ script = ExtResource("2_dova4")
 
 [node name="Scene" parent="." instance=ExtResource("3_bxkgl")]
 
+[node name="slimeSpawn" type="Marker2D" parent="."]
+position = Vector2(38, 100)
+
 [node name="Tower1" type="Node2D" parent="."]
 use_parent_material = true
 position = Vector2(-22, 0)

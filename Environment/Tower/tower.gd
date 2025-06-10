@@ -4,7 +4,6 @@ const TOWER_WIDTH : int = 6 * 11
 const TILE_SIZE : int = 8
 const SPEED : float = 8.0
 
-@onready var Player := $"../slime"
 
 @onready var Tower := $Scene/TowerSprites
 @onready var innerTower := $Scene/BackgroundSetting/TowerViewport/WallBackground
@@ -13,6 +12,7 @@ const SPEED : float = 8.0
 @onready var Mid := $Tower2
 @onready var Right := $Tower3
 
+var Player: Slime
 var playerX: float
 
 func _physics_process(delta: float) -> void:
@@ -53,3 +53,6 @@ func _rotate_left():
 	Mid = Left
 	Left = temp
 	Global.midTowerPosition = Mid.global_position
+
+func set_player(player: Slime) -> void:
+	Player = player

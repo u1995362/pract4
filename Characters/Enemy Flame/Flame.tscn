@@ -113,7 +113,7 @@ height = 52.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fxuon"]
 size = Vector2(42, 53)
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="Flame" type="CharacterBody2D"]
 use_parent_material = true
 scale = Vector2(0.273593, 0.273593)
 collision_layer = 2

@@ -1,10 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://d1q7xp11tjvtf"]
+[gd_scene load_steps=8 format=3 uid="uid://d1q7xp11tjvtf"]
 
 [ext_resource type="Shader" path="res://resources/shaders/paletteSwap.gdshader" id="1_wv5hj"]
 [ext_resource type="Script" path="res://resources/shaders/shadersSetUp.gd" id="2_mro8r"]
-[ext_resource type="PackedScene" uid="uid://bug8efl7henyc" path="res://Environment/Tower/Sections/tower1.tscn" id="3_ft1jm"]
 [ext_resource type="Texture2D" uid="uid://1erkmbnbkls6" path="res://resources/shaders/palette_default.png" id="4_52jrn"]
-[ext_resource type="PackedScene" uid="uid://c3cpiois8vxd3" path="res://Characters/Slime/slime.tscn" id="14_kcpgb"]
+[ext_resource type="Script" path="res://main.gd" id="4_nxhv7"]
 [ext_resource type="Texture2D" uid="uid://lrvcar35b3lb" path="res://resources/shaders/palette_blue.png" id="15_vee30"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_843tt"]
@@ -23,19 +22,14 @@ shader_parameter/palette_out = ExtResource("15_vee30")
 
 [node name="Main" type="Node2D"]
 material = SubResource("ShaderMaterial_843tt")
+script = ExtResource("4_nxhv7")
 metadata/_edit_vertical_guides_ = [12.0, 76.0]
 metadata/_edit_horizontal_guides_ = [-240.0]
 
-[node name="Tower" parent="." instance=ExtResource("3_ft1jm")]
-position = Vector2(-1, 3)
+[node name="ShaderSetUp" type="Node" parent="."]
+script = ExtResource("2_mro8r")
 
-[node name="slime" parent="." instance=ExtResource("14_kcpgb")]
-position = Vector2(38, 100)
-
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="slime"]
-remote_path = NodePath("../../Camera2D2")
-
-[node name="Camera2D2" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="."]
 material = SubResource("ShaderMaterial_kmh7i")
 position = Vector2(38, 100)
 limit_top = -240
@@ -45,6 +39,3 @@ drag_vertical_enabled = true
 drag_top_margin = 0.3
 drag_bottom_margin = 0.4
 editor_draw_screen = false
-
-[node name="ShaderSetUp" type="Node" parent="."]
-script = ExtResource("2_mro8r")

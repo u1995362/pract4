@@ -40,6 +40,9 @@ var actual_state : state = state.IDDLE
 func _ready() -> void:
 	$CoyoteTimer.wait_time = coyote_frames / 60.0
 
+func _reset() -> void:
+	actual_state = state.IDDLE
+
 func _physics_process(delta: float) -> void:
 	update_state(delta)
 	update_animation()

@@ -1,20 +1,25 @@
 extends Node
 
-@onready var tower = $"../Tower"
+@onready var parent = self.owner
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	var sh : ShaderMaterial = self.material
+var palettes = [
+	preload("res://resources/shaders/palette_default.png"),
+	preload("res://resources/shaders/palette_blue.png"),
+	preload("res://resources/shaders/palette_red.png")
+]
+
+func setup_shaders(tower: Node2D) -> void:
+	var lvl : int = parent.lvl
+	var sh : ShaderMaterial = parent.material
+	
+	sh.set_shader_parameter("palette_in",palettes[0])
+	sh.set_shader_parameter("palette_out",palettes[lvl])
+	
 	
 	var Tsh : ShaderMaterial = tower.material
 	Tsh.set_shader_parameter("ScreenWidth",88)
 	Tsh.set_shader_parameter("RealScreenWidth",880)
-	Tsh.set_shader_parameter("palette_in",sh.get_shader_parameter("palette_in"))
-	Tsh.set_shader_parameter("palette_out",sh.get_shader_parameter("palette_out"))
+	Tsh.set_shader_parameter("palette_in",palettes[0])
+	Tsh.set_shader_parameter("palette_out",palettes[lvl])
 	
-	tower.get_child(0).update_shaders(sh)
-
-
-func _physics_process(_delta: float) -> void:
-	if Input.is_action_just_pressed("retry"):
-		get_tree().change_scene_to_file("res://scenes/main.tscn")
+	tower.get_child(0).update_shaders()
