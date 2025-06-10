@@ -1,0 +1,85 @@
+[gd_scene load_steps=8 format=3 uid="uid://hk6m0yj2x7ws"]
+
+[ext_resource type="Texture2D" uid="uid://jyt6p5subqwj" path="res://Environment/ParallaxBackground/skyBackground.png" id="1_je732"]
+[ext_resource type="Texture2D" uid="uid://cuwr7ff4m3m7x" path="res://Environment/ParallaxBackground/clouds.png" id="2_akps8"]
+[ext_resource type="Texture2D" uid="uid://beafma5jlu5bo" path="res://Environment/Tower/wallBackground.png" id="3_abq22"]
+[ext_resource type="Shader" path="res://resources/shaders/distorsio.gdshader" id="4_fm5l2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6cm36"]
+shader = ExtResource("4_fm5l2")
+shader_parameter/strength = 0.5
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_qrigu"]
+viewport_path = NodePath("BackgroundSetting/TowerViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_gbuvm"]
+viewport_path = NodePath("BackgroundSetting/TowerViewport")
+
+[node name="Scene" type="Node2D"]
+
+[node name="BackgroundSetting" type="Node2D" parent="."]
+
+[node name="SkyParallax" type="ParallaxBackground" parent="BackgroundSetting"]
+
+[node name="SkyBackground" type="Sprite2D" parent="BackgroundSetting/SkyParallax"]
+position = Vector2(44, 60)
+texture = ExtResource("1_je732")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="BackgroundSetting/SkyParallax"]
+motion_scale = Vector2(2, 1)
+
+[node name="Clouds" type="Sprite2D" parent="BackgroundSetting/SkyParallax/ParallaxLayer"]
+use_parent_material = true
+position = Vector2(8, 60)
+texture = ExtResource("2_akps8")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="BackgroundSetting/SkyParallax"]
+motion_scale = Vector2(2, 1)
+
+[node name="Clouds" type="Sprite2D" parent="BackgroundSetting/SkyParallax/ParallaxLayer2"]
+use_parent_material = true
+position = Vector2(102, 103)
+texture = ExtResource("2_akps8")
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="BackgroundSetting/SkyParallax"]
+motion_scale = Vector2(2, 1)
+
+[node name="Clouds" type="Sprite2D" parent="BackgroundSetting/SkyParallax/ParallaxLayer3"]
+use_parent_material = true
+position = Vector2(-22, 93)
+texture = ExtResource("2_akps8")
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="BackgroundSetting/SkyParallax"]
+motion_scale = Vector2(2, 1)
+
+[node name="Clouds" type="Sprite2D" parent="BackgroundSetting/SkyParallax/ParallaxLayer4"]
+use_parent_material = true
+position = Vector2(115, 35)
+texture = ExtResource("2_akps8")
+
+[node name="TowerViewport" type="SubViewport" parent="BackgroundSetting"]
+snap_2d_transforms_to_pixel = true
+size = Vector2i(88, 120)
+
+[node name="WallBackground" type="Sprite2D" parent="BackgroundSetting/TowerViewport"]
+texture = ExtResource("3_abq22")
+offset = Vector2(44, 60)
+
+[node name="TowerSprites" type="Node2D" parent="."]
+material = SubResource("ShaderMaterial_6cm36")
+position = Vector2(44, 0)
+
+[node name="TowerSprite1" type="Sprite2D" parent="TowerSprites"]
+use_parent_material = true
+position = Vector2(0, 60)
+texture = SubResource("ViewportTexture_qrigu")
+
+[node name="TowerSprite2" type="Sprite2D" parent="TowerSprites"]
+use_parent_material = true
+position = Vector2(0, -60)
+texture = SubResource("ViewportTexture_gbuvm")
+
+[node name="TowerSprite3" type="Sprite2D" parent="TowerSprites"]
+use_parent_material = true
+position = Vector2(0, -180)
+texture = SubResource("ViewportTexture_gbuvm")

@@ -1,0 +1,62 @@
+[gd_scene load_steps=6 format=3 uid="uid://df57y26h4vj1"]
+
+[ext_resource type="Shader" path="res://resources/shaders/paletteSwap&ocualtacio.gdshader" id="1_mir0l"]
+[ext_resource type="Script" path="res://Environment/Tower/tower.gd" id="2_a0pfq"]
+[ext_resource type="PackedScene" uid="uid://hk6m0yj2x7ws" path="res://Environment/Tower/scene.tscn" id="3_5prdd"]
+[ext_resource type="TileSet" uid="uid://yokwokmd1xk5" path="res://resources/TileSet/towerTileSet.tres" id="7_mt54s"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7e70y"]
+shader = ExtResource("1_mir0l")
+shader_parameter/ScreenWidth = null
+shader_parameter/RealScreenWidth = null
+shader_parameter/num_colors = 5
+shader_parameter/precision = 0.01
+
+[node name="Tower" type="Node2D"]
+material = SubResource("ShaderMaterial_7e70y")
+script = ExtResource("2_a0pfq")
+
+[node name="Scene" parent="." instance=ExtResource("3_5prdd")]
+
+[node name="Tower1" type="Node2D" parent="."]
+use_parent_material = true
+position = Vector2(-22, 0)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Tower1"]
+use_parent_material = true
+tile_set = ExtResource("7_mt54s")
+
+[node name="Enemies" type="Node2D" parent="Tower1"]
+use_parent_material = true
+
+[node name="Props" type="Node2D" parent="Tower1"]
+
+[node name="Tower2" type="Node2D" parent="."]
+use_parent_material = true
+position = Vector2(44, 0)
+
+[node name="TileMapLayer2" type="TileMapLayer" parent="Tower2"]
+use_parent_material = true
+tile_set = ExtResource("7_mt54s")
+
+[node name="Enemies" type="Node2D" parent="Tower2"]
+use_parent_material = true
+
+[node name="Props" type="Node2D" parent="Tower2"]
+
+[node name="Tower3" type="Node2D" parent="."]
+use_parent_material = true
+position = Vector2(110, 0)
+
+[node name="TileMapLayer3" type="TileMapLayer" parent="Tower3"]
+use_parent_material = true
+tile_set = ExtResource("7_mt54s")
+
+[node name="Enemies" type="Node2D" parent="Tower3"]
+
+[node name="Props" type="Node2D" parent="Tower3"]
+position = Vector2(-66, 0)
+
+[node name="TowerOut" type="Node2D" parent="."]
+use_parent_material = true
+position = Vector2(44, 0)
