@@ -10,9 +10,9 @@ var section : Node2D
 @export_range(1,3) var starting_lvl: int = 1
 var lvl : int = 0
 var lvls = [
-	preload("res://Environment/Tower/Sections/tower1.tscn"),
 	preload("res://Environment/Tower/Sections/tower2.tscn"),
-	preload("res://Environment/Tower/Sections/tower3.tscn")
+	preload("res://Environment/Tower/Sections/tower2.tscn"),
+	preload("res://Environment/Tower/Sections/tower2.tscn")
 ]
 
 func _ready() -> void:

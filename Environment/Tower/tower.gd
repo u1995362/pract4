@@ -19,7 +19,6 @@ func _physics_process(delta: float) -> void:
 	if not Player: return 
 	playerX = Player.position.x
 	Tower.position.x = playerX
-	$TowerOut.position.x =playerX
 	if Player.velocity.x != 0:
 		innerTower.position.x = lerp(innerTower.position.x,innerTower.position.x + SPEED * sign(-Player.velocity.x), delta*3)
 		check_tower_wrap() 
