@@ -1,15 +1,11 @@
-[gd_scene load_steps=14 format=4 uid="uid://bug8efl7henyc"]
+[gd_scene load_steps=8 format=4 uid="uid://bug8efl7henyc"]
 
 [ext_resource type="Shader" path="res://resources/shaders/paletteSwap&ocualtacio.gdshader" id="1_afp47"]
 [ext_resource type="Script" path="res://Environment/Tower/tower.gd" id="2_dova4"]
-[ext_resource type="Texture2D" uid="uid://jyt6p5subqwj" path="res://Environment/ParallaxBackground/skyBackground.png" id="3_0xm8f"]
-[ext_resource type="Texture2D" uid="uid://cuwr7ff4m3m7x" path="res://Environment/ParallaxBackground/clouds.png" id="4_y44p7"]
-[ext_resource type="Texture2D" uid="uid://beafma5jlu5bo" path="res://Environment/Tower/wallBackground.png" id="5_rr8l2"]
-[ext_resource type="Shader" path="res://resources/shaders/distorsio.gdshader" id="6_faij0"]
+[ext_resource type="PackedScene" uid="uid://hk6m0yj2x7ws" path="res://Environment/Tower/scene.tscn" id="3_bxkgl"]
 [ext_resource type="TileSet" uid="uid://yokwokmd1xk5" path="res://resources/TileSet/towerTileSet.tres" id="7_vre6h"]
 [ext_resource type="PackedScene" uid="uid://dmqlieh7sp357" path="res://Characters/Enemy Wheel/wheel.tscn" id="8_5fcli"]
 [ext_resource type="PackedScene" uid="uid://b3j4ou1nr4xfj" path="res://Props/Door/Door.tscn" id="9_xkt8o"]
-[ext_resource type="PackedScene" uid="uid://xkseisetgdhg" path="res://Characters/Enemy Flame/Flame.tscn" id="10_pjsw2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7e70y"]
 shader = ExtResource("1_afp47")
@@ -18,85 +14,11 @@ shader_parameter/RealScreenWidth = null
 shader_parameter/num_colors = 5
 shader_parameter/precision = 0.01
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_6cm36"]
-shader = ExtResource("6_faij0")
-shader_parameter/strength = 0.5
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_gbuvm"]
-viewport_path = NodePath("Tower/Scene/BackgroundSetting/TowerViewport")
-
 [node name="Tower" type="Node2D"]
 material = SubResource("ShaderMaterial_7e70y")
 script = ExtResource("2_dova4")
 
-[node name="Scene" type="Node2D" parent="."]
-
-[node name="BackgroundSetting" type="Node2D" parent="Scene"]
-
-[node name="SkyParallax" type="ParallaxBackground" parent="Scene/BackgroundSetting"]
-
-[node name="SkyBackground" type="Sprite2D" parent="Scene/BackgroundSetting/SkyParallax"]
-position = Vector2(44, 60)
-texture = ExtResource("3_0xm8f")
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="Scene/BackgroundSetting/SkyParallax"]
-motion_scale = Vector2(2, 1)
-
-[node name="Clouds" type="Sprite2D" parent="Scene/BackgroundSetting/SkyParallax/ParallaxLayer"]
-use_parent_material = true
-position = Vector2(8, 60)
-texture = ExtResource("4_y44p7")
-
-[node name="ParallaxLayer2" type="ParallaxLayer" parent="Scene/BackgroundSetting/SkyParallax"]
-motion_scale = Vector2(2, 1)
-
-[node name="Clouds" type="Sprite2D" parent="Scene/BackgroundSetting/SkyParallax/ParallaxLayer2"]
-use_parent_material = true
-position = Vector2(102, 103)
-texture = ExtResource("4_y44p7")
-
-[node name="ParallaxLayer3" type="ParallaxLayer" parent="Scene/BackgroundSetting/SkyParallax"]
-motion_scale = Vector2(2, 1)
-
-[node name="Clouds" type="Sprite2D" parent="Scene/BackgroundSetting/SkyParallax/ParallaxLayer3"]
-use_parent_material = true
-position = Vector2(-22, 93)
-texture = ExtResource("4_y44p7")
-
-[node name="ParallaxLayer4" type="ParallaxLayer" parent="Scene/BackgroundSetting/SkyParallax"]
-motion_scale = Vector2(2, 1)
-
-[node name="Clouds" type="Sprite2D" parent="Scene/BackgroundSetting/SkyParallax/ParallaxLayer4"]
-use_parent_material = true
-position = Vector2(115, 35)
-texture = ExtResource("4_y44p7")
-
-[node name="TowerViewport" type="SubViewport" parent="Scene/BackgroundSetting"]
-snap_2d_transforms_to_pixel = true
-size = Vector2i(88, 120)
-
-[node name="WallBackground" type="Sprite2D" parent="Scene/BackgroundSetting/TowerViewport"]
-texture = ExtResource("5_rr8l2")
-offset = Vector2(44, 60)
-
-[node name="TowerSprites" type="Node2D" parent="Scene"]
-material = SubResource("ShaderMaterial_6cm36")
-position = Vector2(44, 0)
-
-[node name="TowerSprite1" type="Sprite2D" parent="Scene/TowerSprites"]
-use_parent_material = true
-position = Vector2(0, 60)
-texture = SubResource("ViewportTexture_gbuvm")
-
-[node name="TowerSprite2" type="Sprite2D" parent="Scene/TowerSprites"]
-use_parent_material = true
-position = Vector2(0, -60)
-texture = SubResource("ViewportTexture_gbuvm")
-
-[node name="TowerSprite3" type="Sprite2D" parent="Scene/TowerSprites"]
-use_parent_material = true
-position = Vector2(0, -180)
-texture = SubResource("ViewportTexture_gbuvm")
+[node name="Scene" parent="." instance=ExtResource("3_bxkgl")]
 
 [node name="Tower1" type="Node2D" parent="."]
 use_parent_material = true
@@ -104,7 +26,7 @@ position = Vector2(-22, 0)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="Tower1"]
 use_parent_material = true
-tile_map_data = PackedByteArray("AAACABcAAAAAAAAAAAABABcAAAAAAAAAAAAAABcAAAAAAAAAAAD9/xcAAAAAAAAAAAD+/xcAAAAAAAAAAAD//xcAAAAAAAAAAAABABYAAAAAAAAAAAAAABMAAAAAAAAAAAD//w8AAAAAAAAAAAD+/woAAAAAAAAAAAABAAkAAAAAAAAAAAD9/wMAAAAAAAAAAAD+/wMAAAAAAAAAAAD//wMAAAAAAAAAAAAAAAMAAAAAAAAAAAABAAMAAAAAAAAAAAACAAMAAAAAAAAAAAD9//H/AAAAAAAAAAD+//L/AAAAAAAAAAD///P/AAAAAAAAAAAAAPT/AAAAAAAAAAABAPX/AAAAAAAAAAACAPb/AAAAAAAAAAD9//r/AAAAAAAAAAD+//r/AAAAAAAAAAD///r/AAAAAAAAAAAAAPr/AAAAAAAAAAABAPr/AAAAAAAAAAACAPr/AAAAAAAAAAD9/wAAAAAAAAAAAAD+/wEAAAAAAAAAAAD//wIAAAAAAAAAAAD9/wEAAAAAAAAAAAD9/wIAAAAAAAAAAAD+/wIAAAAAAAAAAAABAPH/AQAAAAAAAAACAPH/AQAAAAAAAAD+//H/AQAAAAAAAAD///H/AQAAAAAAAAAAAPH/AQAAAAAAAAACAND/AAAAAAAAAAABAND/AAAAAAAAAAAAAND/AAAAAAAAAAD//9D/AAAAAAAAAAD+/9D/AAAAAAAAAAD9/9D/AAAAAAAAAAACANf/AAAAAAAAAAACANb/AAAAAAAAAAACANX/AAAAAAAAAAACANT/AAAAAAAAAAACANP/AAAAAAAAAAACANL/AAAAAAAAAAACANH/AAAAAAAAAAABAN//AAAAAAAAAAABAOj/AAAAAAAAAAD//+L/AAAAAAAAAAD+/+f/AAAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAACABcAAAAAAAAAAAABABcAAAAAAAAAAAAAABcAAAAAAAAAAAD9/xcAAAAAAAAAAAD//xcAAAAAAAAAAAABABYAAAAAAAAAAAAAABMAAAAAAAAAAAD//w8AAAAAAAAAAAD+/woAAAAAAAAAAAABAAkAAAAAAAAAAAD9/wMAAAAAAAAAAAD+/wMAAAAAAAAAAAD//wMAAAAAAAAAAAAAAAMAAAAAAAAAAAABAAMAAAAAAAAAAAACAAMAAAAAAAAAAAD9//H/AAAAAAAAAAD+//L/AAAAAAAAAAD///P/AAAAAAAAAAAAAPT/AAAAAAAAAAABAPX/AAAAAAAAAAACAPb/AAAAAAAAAAD9//r/AAAAAAAAAAD+//r/AAAAAAAAAAD///r/AAAAAAAAAAAAAPr/AAAAAAAAAAABAPr/AAAAAAAAAAACAPr/AAAAAAAAAAD9/wAAAAAAAAAAAAD+/wEAAAAAAAAAAAD//wIAAAAAAAAAAAD9/wEAAAAAAAAAAAD9/wIAAAAAAAAAAAD+/wIAAAAAAAAAAAABAPH/AQAAAAAAAAACAPH/AQAAAAAAAAD+//H/AQAAAAAAAAD///H/AQAAAAAAAAAAAPH/AQAAAAAAAAACAND/AAAAAAAAAAABAND/AAAAAAAAAAAAAND/AAAAAAAAAAD//9D/AAAAAAAAAAD+/9D/AAAAAAAAAAD9/9D/AAAAAAAAAAACANf/AAAAAAAAAAACANb/AAAAAAAAAAACANX/AAAAAAAAAAACANT/AAAAAAAAAAACANP/AAAAAAAAAAACANL/AAAAAAAAAAACANH/AAAAAAAAAAABAN//AAAAAAAAAAABAOj/AAAAAAAAAAD//+L/AAAAAAAAAAD+/+f/AAAAAAAAAAD+/xcAAAAAAAAAAAA=")
 tile_set = ExtResource("7_vre6h")
 
 [node name="Enemies" type="Node2D" parent="Tower1"]
@@ -114,6 +36,7 @@ use_parent_material = true
 position = Vector2(17, 15)
 
 [node name="Props" type="Node2D" parent="Tower1"]
+use_parent_material = true
 
 [node name="Tower2" type="Node2D" parent="."]
 use_parent_material = true
@@ -121,7 +44,7 @@ position = Vector2(44, 0)
 
 [node name="TileMapLayer2" type="TileMapLayer" parent="Tower2"]
 use_parent_material = true
-tile_map_data = PackedByteArray("AAD9/xcAAAAAAAAAAAD+/xcAAAAAAAAAAAD//xcAAAAAAAAAAAAAABcAAAAAAAAAAAABABcAAAAAAAAAAAACABcAAAAAAAAAAAD9/xMAAAAAAAAAAAD9/xQAAAAAAAAAAAD9/xUAAAAAAAAAAAD9/xYAAAAAAAAAAAD9/xAAAAAAAAAAAAD9/xEAAAAAAAAAAAD9/xIAAAAAAAAAAAD+/xAAAAAAAAAAAAD//xAAAAAAAAAAAAAAABAAAAAAAAAAAAABABAAAAAAAAAAAAABABEAAAAAAAAAAAABABIAAAAAAAAAAAABABMAAAAAAAAAAAACABMAAAAAAAAAAAD9/w8AAAAAAAAAAAD//w0AAAAAAAAAAAD9/woAAAAAAAAAAAD9/wkAAAAAAAAAAAD+/wkAAAAAAAAAAAD//wkAAAAAAAAAAAAAAAkAAAAAAAAAAAABAAkAAAAAAAAAAAACAAkAAAAAAAAAAAD9/wMAAAAAAAAAAAD+/wMAAAAAAAAAAAD//wMAAAAAAAAAAAAAAAMAAAAAAAAAAAABAAMAAAAAAAAAAAACAAMAAAAAAAAAAAAAAPr/AAAAAAAAAAD+//j/AAAAAAAAAAD9//f/AAAAAAAAAAD9//r/AAAAAAAAAAD+//r/AAAAAAAAAAD///r/AAAAAAAAAAABAPr/AAAAAAAAAAACAPr/AAAAAAAAAAACAAIAAAAAAAAAAAD9/wIAAAAAAAAAAAD9//H/AAAAAAAAAAD+//H/AAAAAAAAAAD///H/AAAAAAAAAAAAAPH/AAAAAAAAAAABAPH/AAAAAAAAAAACAPH/AAAAAAAAAAACAND/AAAAAAAAAAABAND/AAAAAAAAAAAAAND/AAAAAAAAAAD//9D/AAAAAAAAAAD+/9D/AAAAAAAAAAD9/9D/AAAAAAAAAAD//9f/AAAAAAAAAAAAANf/AAAAAAAAAAD+/9f/AQAAAAAAAAD9/9f/AQAAAAAAAAABANf/AQAAAAAAAAACANf/AQAAAAAAAAD+//D/AAAAAAAAAAABAOz/AAAAAAAAAAD9/93/AAAAAAAAAAACAN3/AAAAAAAAAAD//+n/AAAAAAAAAAAFAO//AAAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAD9/xcAAAAAAAAAAAD+/xcAAAAAAAAAAAD//xcAAAAAAAAAAAAAABcAAAAAAAAAAAABABcAAAAAAAAAAAACABcAAAAAAAAAAAD9/xMAAAAAAAAAAAD9/xAAAAAAAAAAAAD9/xEAAAAAAAAAAAD9/xIAAAAAAAAAAAD+/xAAAAAAAAAAAAD//xAAAAAAAAAAAAAAABAAAAAAAAAAAAABABAAAAAAAAAAAAABABEAAAAAAAAAAAABABIAAAAAAAAAAAABABMAAAAAAAAAAAACABMAAAAAAAAAAAD9/w8AAAAAAAAAAAD//w0AAAAAAAAAAAD9/woAAAAAAAAAAAD9/wkAAAAAAAAAAAD+/wkAAAAAAAAAAAD//wkAAAAAAAAAAAAAAAkAAAAAAAAAAAABAAkAAAAAAAAAAAACAAkAAAAAAAAAAAD9/wMAAAAAAAAAAAD+/wMAAAAAAAAAAAD//wMAAAAAAAAAAAAAAAMAAAAAAAAAAAABAAMAAAAAAAAAAAACAAMAAAAAAAAAAAAAAPr/AAAAAAAAAAD+//j/AAAAAAAAAAD9//f/AAAAAAAAAAD9//r/AAAAAAAAAAD+//r/AAAAAAAAAAD///r/AAAAAAAAAAABAPr/AAAAAAAAAAACAPr/AAAAAAAAAAACAAIAAAAAAAAAAAD9/wIAAAAAAAAAAAD9//H/AAAAAAAAAAD+//H/AAAAAAAAAAD///H/AAAAAAAAAAAAAPH/AAAAAAAAAAABAPH/AAAAAAAAAAACAPH/AAAAAAAAAAACAND/AAAAAAAAAAABAND/AAAAAAAAAAAAAND/AAAAAAAAAAD//9D/AAAAAAAAAAD+/9D/AAAAAAAAAAD9/9D/AAAAAAAAAAD//9f/AAAAAAAAAAAAANf/AAAAAAAAAAD+/9f/AQAAAAAAAAD9/9f/AQAAAAAAAAABANf/AQAAAAAAAAACANf/AQAAAAAAAAD+//D/AAAAAAAAAAABAOz/AAAAAAAAAAD9/93/AAAAAAAAAAACAN3/AAAAAAAAAAD//+n/AAAAAAAAAAAFAO//AAAAAAAAAAA=")
 tile_set = ExtResource("7_vre6h")
 
 [node name="Enemies" type="Node2D" parent="Tower2"]
@@ -137,9 +60,11 @@ position = Vector2(16, 15)
 position = Vector2(5, -30)
 
 [node name="Props" type="Node2D" parent="Tower2"]
+use_parent_material = true
 
 [node name="Door" parent="Tower2/Props" instance=ExtResource("9_xkt8o")]
 position = Vector2(0, -205)
+door_state = 0
 
 [node name="Tower3" type="Node2D" parent="."]
 use_parent_material = true
@@ -147,17 +72,16 @@ position = Vector2(110, 0)
 
 [node name="TileMapLayer3" type="TileMapLayer" parent="Tower3"]
 use_parent_material = true
-tile_map_data = PackedByteArray("AAD9/wMAAAAAAAAAAAD9/wQAAAAAAAAAAAD9/wUAAAAAAAAAAAD9/wkAAAAAAAAAAAD9/woAAAAAAAAAAAD9/wsAAAAAAAAAAAD9/wwAAAAAAAAAAAD9/w0AAAAAAAAAAAD9/w4AAAAAAAAAAAD9/w8AAAAAAAAAAAD9/xAAAAAAAAAAAAD9/xEAAAAAAAAAAAD9/xMAAAAAAAAAAAD9/xcAAAAAAAAAAAD+/wkAAAAAAAAAAAD+/xMAAAAAAAAAAAD+/xcAAAAAAAAAAAD//xcAAAAAAAAAAAAAABcAAAAAAAAAAAABAA8AAAAAAAAAAAABABUAAAAAAAAAAAABABcAAAAAAAAAAAACAAMAAAAAAAAAAAACAAQAAAAAAAAAAAACAAUAAAAAAAAAAAACAAYAAAAAAAAAAAACAAcAAAAAAAAAAAACAAgAAAAAAAAAAAACAAkAAAAAAAAAAAACAAoAAAAAAAAAAAACAAsAAAAAAAAAAAACAAwAAAAAAAAAAAACAA0AAAAAAAAAAAACAA4AAAAAAAAAAAACAA8AAAAAAAAAAAACABAAAAAAAAAAAAACABEAAAAAAAAAAAACABIAAAAAAAAAAAACABMAAAAAAAAAAAACABQAAAAAAAAAAAACABUAAAAAAAAAAAACABcAAAAAAAAAAAACAAIAAAAAAAAAAAD+/wQAAAAAAAAAAAACAAAAAAAAAAAAAAACAAEAAAAAAAAAAAABAP//AAAAAAAAAAAAAP7/AAAAAAAAAAD///3/AAAAAAAAAAD+//z/AAAAAAAAAAD9//v/AAAAAAAAAAD9//H/AAAAAAAAAAD+//H/AAAAAAAAAAD///H/AAAAAAAAAAAAAPH/AAAAAAAAAAABAPH/AAAAAAAAAAACAPH/AAAAAAAAAAD9/9D/AAAAAAAAAAD+/9D/AAAAAAAAAAD//9D/AAAAAAAAAAAAAND/AAAAAAAAAAABAND/AAAAAAAAAAACAND/AAAAAAAAAAD9/9H/AAAAAAAAAAD9/9L/AAAAAAAAAAD9/9P/AAAAAAAAAAD9/9T/AAAAAAAAAAD9/9X/AAAAAAAAAAD9/9b/AAAAAAAAAAD9/9f/AAAAAAAAAAD+/+f/AAAAAAAAAAAAAOH/AAAAAAAAAAABAOn/AAAAAAAAAAD///D/AAAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAD9/wMAAAAAAAAAAAD9/wQAAAAAAAAAAAD9/wUAAAAAAAAAAAD9/wkAAAAAAAAAAAD9/woAAAAAAAAAAAD9/wsAAAAAAAAAAAD9/wwAAAAAAAAAAAD9/w0AAAAAAAAAAAD9/w4AAAAAAAAAAAD9/w8AAAAAAAAAAAD9/xAAAAAAAAAAAAD9/xEAAAAAAAAAAAD9/xMAAAAAAAAAAAD9/xcAAAAAAAAAAAD+/wkAAAAAAAAAAAD+/xMAAAAAAAAAAAD+/xcAAAAAAAAAAAD//xcAAAAAAAAAAAAAABcAAAAAAAAAAAABAA8AAAAAAAAAAAABABUAAAAAAAAAAAABABcAAAAAAAAAAAACAAMAAAAAAAAAAAACAAQAAAAAAAAAAAACAAUAAAAAAAAAAAACAAYAAAAAAAAAAAACAAcAAAAAAAAAAAACAAgAAAAAAAAAAAACAAkAAAAAAAAAAAACAAoAAAAAAAAAAAACAAsAAAAAAAAAAAACAAwAAAAAAAAAAAACAA0AAAAAAAAAAAACAA4AAAAAAAAAAAACAA8AAAAAAAAAAAACABAAAAAAAAAAAAACABEAAAAAAAAAAAACABIAAAAAAAAAAAACABMAAAAAAAAAAAACABQAAAAAAAAAAAACABUAAAAAAAAAAAACABcAAAAAAAAAAAACAAIAAAAAAAAAAAD+/wQAAAAAAAAAAAACAAAAAAAAAAAAAAACAAEAAAAAAAAAAAABAP//AAAAAAAAAAAAAP7/AAAAAAAAAAD///3/AAAAAAAAAAD+//z/AAAAAAAAAAD9//v/AAAAAAAAAAD9//H/AAAAAAAAAAD+//H/AAAAAAAAAAD///H/AAAAAAAAAAAAAPH/AAAAAAAAAAABAPH/AAAAAAAAAAACAPH/AAAAAAAAAAD9/9D/AAAAAAAAAAD+/9D/AAAAAAAAAAD//9D/AAAAAAAAAAAAAND/AAAAAAAAAAABAND/AAAAAAAAAAACAND/AAAAAAAAAAD9/9H/AAAAAAAAAAD9/9L/AAAAAAAAAAD9/9P/AAAAAAAAAAD9/9T/AAAAAAAAAAD9/9X/AAAAAAAAAAD9/9b/AAAAAAAAAAD9/9f/AAAAAAAAAAD+/+f/AAAAAAAAAAAAAOH/AAAAAAAAAAABAOn/AAAAAAAAAAD///D/AAAAAAAAAAD//wkAAQAAAAAAAAA=")
 tile_set = ExtResource("7_vre6h")
 
 [node name="Enemies" type="Node2D" parent="Tower3"]
+use_parent_material = true
 
 [node name="Props" type="Node2D" parent="Tower3"]
+use_parent_material = true
 position = Vector2(-66, 0)
 
 [node name="TowerOut" type="Node2D" parent="."]
 use_parent_material = true
 position = Vector2(44, 0)
-
-[node name="CharacterBody2D" parent="TowerOut" instance=ExtResource("10_pjsw2")]
-position = Vector2(1, 29)

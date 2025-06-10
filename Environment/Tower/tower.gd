@@ -15,12 +15,8 @@ const SPEED : float = 8.0
 
 var playerX: float
 
-"func _ready() -> void:
-	Left.position.x = -TOWER_WIDTH
-	Mid.position.x = 0
-	Right.position.x = TOWER_WIDTH"
-
 func _physics_process(delta: float) -> void:
+	if not Player: return 
 	playerX = Player.position.x
 	Tower.position.x = playerX
 	$TowerOut.position.x =playerX
