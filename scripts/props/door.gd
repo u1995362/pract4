@@ -18,5 +18,7 @@ func opening():
 
 func _on_body_entered(body: Node2D) -> void:
 	if open:
-		anim.play("Close")
-		Global.emit_entered()
+		body.visible = false
+		body.set_process(false)
+		body.set_physics_process(false)
+		anim.play("Slime_Entering")
