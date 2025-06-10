@@ -1,19 +1,19 @@
 extends Node2D
 
 @export var slime: PackedScene = preload("res://Characters/Slime/slime.tscn")
-@export_range(1,3) var starting_lvl: int = 1
+var player : Slime
+var section : Node2D
 @onready var camera:Camera2D = $Camera2D
 
-var player : Slime
 
+
+@export_range(1,3) var starting_lvl: int = 1
 var lvl : int = 0
 var lvls = [
 	preload("res://Environment/Tower/Sections/tower1.tscn"),
 	preload("res://Environment/Tower/Sections/tower2.tscn"),
-	preload("res://Environment/Tower/Sections/tower2.tscn")
+	preload("res://Environment/Tower/Sections/tower3.tscn")
 ]
-
-
 
 func _ready() -> void:
 	lvl = starting_lvl-1
@@ -23,7 +23,7 @@ func _ready() -> void:
 func next_lvl() -> void:
 	lvl += 1
 	if lvl < 3:
-		$Tower.queue_free()
+		section.queue_free()
 		start_lvl()
 
 func _physics_process(_delta: float) -> void:
@@ -32,10 +32,9 @@ func _physics_process(_delta: float) -> void:
 
 func start_lvl() -> void:
 	
-		
 	var lvl = lvls[lvl]
 	
-	var section : Node2D = lvl.instantiate()
+	section = lvl.instantiate()
 	add_child(section)
 	
 	#Crear Player i moviment de la camara
