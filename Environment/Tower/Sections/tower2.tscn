@@ -88,6 +88,7 @@ tile_map_data = PackedByteArray("AAD9/xcAAAAAAAAAAAD+/xcAAAAAAAAAAAD//xcAAAAAAAA
 tile_set = ExtResource("7_8e6ug")
 
 [node name="Enemies" type="Node2D" parent="Tower3"]
+use_parent_material = true
 
 [node name="wheel" parent="Tower3/Enemies" instance=ExtResource("8_i78w7")]
 position = Vector2(12, -166)

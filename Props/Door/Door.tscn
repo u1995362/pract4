@@ -184,6 +184,7 @@ sprite_frames = SubResource("SpriteFrames_4g8hg")
 animation = &"Open"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+use_parent_material = true
 position = Vector2(0, -9)
 shape = SubResource("CapsuleShape2D_ic2s6")
 
