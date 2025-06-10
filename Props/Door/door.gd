@@ -16,7 +16,7 @@ var slime: CharacterBody2D = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	Global.connect("open", Callable(self, "opening"))
+	Global.connect("open", Callable(self, "open"))
 	match door_state:
 		state.OPEN:
 			anim.play("Open")
@@ -26,7 +26,6 @@ func _ready() -> void:
 			anim.play("Open")
 			door_state = state.OPENING
 			await anim.animation_finished
-			anim.stop()
 			door_state = state.OPEN
 		state.CLOSED:
 			anim.play("Close")
