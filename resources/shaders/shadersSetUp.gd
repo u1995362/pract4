@@ -1,6 +1,6 @@
-extends Node2D
+extends Node
 
-@onready var tower = $Tower
+@onready var tower = $"../Tower"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -12,12 +12,7 @@ func _ready() -> void:
 	Tsh.set_shader_parameter("palette_in",sh.get_shader_parameter("palette_in"))
 	Tsh.set_shader_parameter("palette_out",sh.get_shader_parameter("palette_out"))
 	
-	#tower.get_child(0).update_shaders()
-	
-	"""for c in background.get_children():
-		for child in c.get_children():
-			child.material = Ssh"""
-	
+	tower.get_child(0).update_shaders(sh)
 
 
 func _physics_process(_delta: float) -> void:

@@ -11,6 +11,8 @@
 shader = ExtResource("1_wv5hj")
 shader_parameter/num_colors = 5
 shader_parameter/precision = 0.01
+shader_parameter/palette_in = ExtResource("4_52jrn")
+shader_parameter/palette_out = ExtResource("15_vee30")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kmh7i"]
 shader = ExtResource("1_wv5hj")
@@ -21,21 +23,20 @@ shader_parameter/palette_out = ExtResource("15_vee30")
 
 [node name="Main" type="Node2D"]
 material = SubResource("ShaderMaterial_843tt")
-script = ExtResource("2_mro8r")
 metadata/_edit_vertical_guides_ = [12.0, 76.0]
 metadata/_edit_horizontal_guides_ = [-240.0]
 
 [node name="Tower" parent="." instance=ExtResource("3_ft1jm")]
 
 [node name="slime" parent="." instance=ExtResource("14_kcpgb")]
-position = Vector2(38, 102)
+position = Vector2(38, 100)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="slime"]
 remote_path = NodePath("../../Camera2D2")
 
 [node name="Camera2D2" type="Camera2D" parent="."]
 material = SubResource("ShaderMaterial_kmh7i")
-position = Vector2(38, 102)
+position = Vector2(38, 100)
 limit_top = -240
 limit_bottom = 120
 position_smoothing_speed = 100.0
@@ -43,3 +44,6 @@ drag_vertical_enabled = true
 drag_top_margin = 0.3
 drag_bottom_margin = 0.4
 editor_draw_screen = false
+
+[node name="ShaderSetUp" type="Node" parent="."]
+script = ExtResource("2_mro8r")

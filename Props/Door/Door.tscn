@@ -178,6 +178,7 @@ use_parent_material = true
 script = ExtResource("1_pslnp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+use_parent_material = true
 position = Vector2(0, -12.5)
 sprite_frames = SubResource("SpriteFrames_4g8hg")
 animation = &"Close"

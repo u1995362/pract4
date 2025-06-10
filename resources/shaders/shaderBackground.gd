@@ -4,7 +4,7 @@ extends Node2D
 
 
 # Called when the node enters the scene tree for the first time.
-func update_shaders() -> void:
+func update_shaders(Msh: ShaderMaterial) -> void:
 	var sh : ShaderMaterial = self.owner.material
 	var Bsh : ShaderMaterial = background.material
 	
@@ -13,5 +13,5 @@ func update_shaders() -> void:
 	
 	for c in background.get_children():
 		for child in c.get_children():
-			child.material = sh
+			child.material = Bsh
 	
