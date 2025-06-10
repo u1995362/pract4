@@ -16,7 +16,6 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if is_waiting:
-		print("pOS:" + str(position.x))
 		wait_time -= delta
 		if wait_time <= 0:
 			is_waiting = false
@@ -25,8 +24,6 @@ func _physics_process(delta: float) -> void:
 		return 
 	
 	distancia += speed * delta
-	print(distancia)
-	print("pOS:" + str(position.x))
 	velocity = Vector2(direction * speed, 0)
 	move_and_slide()
 	
