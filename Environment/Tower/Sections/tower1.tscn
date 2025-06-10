@@ -2,7 +2,7 @@
 
 [ext_resource type="Shader" path="res://resources/shaders/paletteSwap&ocualtacio.gdshader" id="1_afp47"]
 [ext_resource type="Script" path="res://Environment/Tower/tower.gd" id="2_dova4"]
-[ext_resource type="PackedScene" uid="uid://hk6m0yj2x7ws" path="res://Environment/Tower/scene.tscn" id="3_bxkgl"]
+[ext_resource type="PackedScene" uid="uid://qvuoee3mot35" path="res://Environment/Tower/scene.tscn" id="3_bxkgl"]
 [ext_resource type="TileSet" uid="uid://yokwokmd1xk5" path="res://resources/TileSet/towerTileSet.tres" id="7_vre6h"]
 [ext_resource type="PackedScene" uid="uid://dmqlieh7sp357" path="res://Characters/Enemy Wheel/wheel.tscn" id="8_5fcli"]
 [ext_resource type="PackedScene" uid="uid://b3j4ou1nr4xfj" path="res://Props/Door/Door.tscn" id="9_xkt8o"]

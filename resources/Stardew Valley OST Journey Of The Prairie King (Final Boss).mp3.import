@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://biuy4o6mm037m"
+path="res://.godot/imported/Stardew Valley OST Journey Of The Prairie King (Final Boss).mp3-0bfba27f6d96df39b5d19efa0cdd0eab.mp3str"
+
+[deps]
+
+source_file="res://resources/Stardew Valley OST Journey Of The Prairie King (Final Boss).mp3"
+dest_files=["res://.godot/imported/Stardew Valley OST Journey Of The Prairie King (Final Boss).mp3-0bfba27f6d96df39b5d19efa0cdd0eab.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

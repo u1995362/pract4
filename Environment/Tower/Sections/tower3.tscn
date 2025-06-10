@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://d32g27217eimm"]
+[gd_scene load_steps=18 format=4 uid="uid://d32g27217eimm"]
 
 [ext_resource type="Shader" path="res://resources/shaders/paletteSwap&ocualtacio.gdshader" id="1_t2mxn"]
 [ext_resource type="Script" path="res://Environment/Tower/tower.gd" id="2_gg3oa"]
@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://cuwr7ff4m3m7x" path="res://Environment/ParallaxBackground/clouds.png" id="6_gb3cc"]
 [ext_resource type="Texture2D" uid="uid://beafma5jlu5bo" path="res://Environment/Tower/wallBackground.png" id="7_o0m5q"]
 [ext_resource type="Shader" path="res://resources/shaders/distorsio.gdshader" id="8_m30oc"]
-[ext_resource type="Texture2D" uid="uid://0ti7g43w57xo" path="res://Environment/Tower/viewportTower.tres" id="9_0o24r"]
 [ext_resource type="PackedScene" uid="uid://dhxv411naklgu" path="res://Props/Presure plate/presure_plate.tscn" id="11_6qim0"]
 [ext_resource type="Script" path="res://Environment/Tower/Sections/trigger_area.gd" id="12_amchh"]
 
@@ -28,6 +27,12 @@ shader_parameter/precision = 0.01
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6cm36"]
 shader = ExtResource("8_m30oc")
 shader_parameter/strength = 0.5
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ujj7w"]
+viewport_path = NodePath("Scene/BackgroundSetting/TowerViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_bupn8"]
+viewport_path = NodePath("Scene/BackgroundSetting/TowerViewport")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5ycc8"]
 size = Vector2(33.5, 1)
@@ -95,12 +100,12 @@ position = Vector2(44, 0)
 [node name="TowerSprite1" type="Sprite2D" parent="Scene/TowerSprites"]
 use_parent_material = true
 position = Vector2(0, 60)
-texture = ExtResource("9_0o24r")
+texture = SubResource("ViewportTexture_ujj7w")
 
 [node name="TowerSprite2" type="Sprite2D" parent="Scene/TowerSprites"]
 use_parent_material = true
 position = Vector2(0, -60)
-texture = ExtResource("9_0o24r")
+texture = SubResource("ViewportTexture_bupn8")
 
 [node name="slimeSpawn" type="Marker2D" parent="."]
 position = Vector2(44, 100)
