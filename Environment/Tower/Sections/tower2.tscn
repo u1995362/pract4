@@ -1,0 +1,183 @@
+[gd_scene load_steps=15 format=4 uid="uid://cvbge6g0xva2n"]
+
+[ext_resource type="Shader" path="res://resources/shaders/paletteSwap&ocualtacio.gdshader" id="1_csiae"]
+[ext_resource type="Script" path="res://Environment/Tower/tower.gd" id="2_ev2mf"]
+[ext_resource type="Texture2D" uid="uid://jyt6p5subqwj" path="res://Environment/ParallaxBackground/skyBackground.png" id="3_ycjt3"]
+[ext_resource type="Texture2D" uid="uid://cuwr7ff4m3m7x" path="res://Environment/ParallaxBackground/clouds.png" id="4_ysbwu"]
+[ext_resource type="Texture2D" uid="uid://beafma5jlu5bo" path="res://Environment/Tower/wallBackground.png" id="5_gvgps"]
+[ext_resource type="Shader" path="res://resources/shaders/distorsio.gdshader" id="6_8gwfq"]
+[ext_resource type="TileSet" uid="uid://yokwokmd1xk5" path="res://resources/TileSet/towerTileSet.tres" id="7_8e6ug"]
+[ext_resource type="PackedScene" uid="uid://dmqlieh7sp357" path="res://Characters/Enemy Wheel/wheel.tscn" id="8_i78w7"]
+[ext_resource type="PackedScene" uid="uid://b3j4ou1nr4xfj" path="res://Props/Door/Door.tscn" id="9_ll6lo"]
+[ext_resource type="PackedScene" uid="uid://xkseisetgdhg" path="res://Characters/Enemy Flame/Flame.tscn" id="10_d331n"]
+[ext_resource type="PackedScene" uid="uid://dhxv411naklgu" path="res://Props/Presure plate/presure_plate.tscn" id="10_hlj52"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7e70y"]
+shader = ExtResource("1_csiae")
+shader_parameter/ScreenWidth = null
+shader_parameter/RealScreenWidth = null
+shader_parameter/num_colors = 5
+shader_parameter/precision = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6cm36"]
+shader = ExtResource("6_8gwfq")
+shader_parameter/strength = 0.5
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_gbuvm"]
+viewport_path = NodePath("Tower/Scene/BackgroundSetting/TowerViewport")
+
+[node name="Tower" type="Node2D"]
+material = SubResource("ShaderMaterial_7e70y")
+script = ExtResource("2_ev2mf")
+
+[node name="Scene" type="Node2D" parent="."]
+
+[node name="BackgroundSetting" type="Node2D" parent="Scene"]
+
+[node name="SkyParallax" type="ParallaxBackground" parent="Scene/BackgroundSetting"]
+
+[node name="SkyBackground" type="Sprite2D" parent="Scene/BackgroundSetting/SkyParallax"]
+position = Vector2(44, 60)
+texture = ExtResource("3_ycjt3")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Scene/BackgroundSetting/SkyParallax"]
+motion_scale = Vector2(2, 1)
+
+[node name="Clouds" type="Sprite2D" parent="Scene/BackgroundSetting/SkyParallax/ParallaxLayer"]
+use_parent_material = true
+position = Vector2(8, 60)
+texture = ExtResource("4_ysbwu")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="Scene/BackgroundSetting/SkyParallax"]
+motion_scale = Vector2(2, 1)
+
+[node name="Clouds" type="Sprite2D" parent="Scene/BackgroundSetting/SkyParallax/ParallaxLayer2"]
+use_parent_material = true
+position = Vector2(102, 103)
+texture = ExtResource("4_ysbwu")
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="Scene/BackgroundSetting/SkyParallax"]
+motion_scale = Vector2(2, 1)
+
+[node name="Clouds" type="Sprite2D" parent="Scene/BackgroundSetting/SkyParallax/ParallaxLayer3"]
+use_parent_material = true
+position = Vector2(-22, 93)
+texture = ExtResource("4_ysbwu")
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="Scene/BackgroundSetting/SkyParallax"]
+motion_scale = Vector2(2, 1)
+
+[node name="Clouds" type="Sprite2D" parent="Scene/BackgroundSetting/SkyParallax/ParallaxLayer4"]
+use_parent_material = true
+position = Vector2(115, 35)
+texture = ExtResource("4_ysbwu")
+
+[node name="TowerViewport" type="SubViewport" parent="Scene/BackgroundSetting"]
+snap_2d_transforms_to_pixel = true
+size = Vector2i(88, 120)
+
+[node name="WallBackground" type="Sprite2D" parent="Scene/BackgroundSetting/TowerViewport"]
+texture = ExtResource("5_gvgps")
+offset = Vector2(44, 60)
+
+[node name="TowerSprites" type="Node2D" parent="Scene"]
+material = SubResource("ShaderMaterial_6cm36")
+position = Vector2(44, 0)
+
+[node name="TowerSprite1" type="Sprite2D" parent="Scene/TowerSprites"]
+use_parent_material = true
+position = Vector2(0, 60)
+texture = SubResource("ViewportTexture_gbuvm")
+
+[node name="TowerSprite2" type="Sprite2D" parent="Scene/TowerSprites"]
+use_parent_material = true
+position = Vector2(0, -60)
+texture = SubResource("ViewportTexture_gbuvm")
+
+[node name="TowerSprite3" type="Sprite2D" parent="Scene/TowerSprites"]
+use_parent_material = true
+position = Vector2(0, -180)
+texture = SubResource("ViewportTexture_gbuvm")
+
+[node name="Tower1" type="Node2D" parent="."]
+use_parent_material = true
+position = Vector2(-22, 0)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Tower1"]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAD+/xcAAAAAAAAAAAD//xcAAAAAAAAAAAAAABcAAAAAAAAAAAABABcAAAAAAAAAAAACABcAAAAAAAAAAAD//w8AAAAAAAAAAAAAAA8AAAAAAAAAAAABAA8AAAAAAAAAAAACAAcAAAAAAAAAAAABAAcAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAcAAAAAAAAAAAD//wwAAQAAAAAAAAD//wcAAQAAAAAAAAD/////AAAAAAAAAAAAAP//AAAAAAAAAAABAP//AAAAAAAAAAACAP//AAAAAAAAAAABAAQAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAQAAAAAAAAAAAACAPf/AAAAAAAAAAABAPf/AAAAAAAAAAAAAPf/AAAAAAAAAAD///f/AAAAAAAAAAD+//f/AAAAAAAAAAACAPr/AAAAAAAAAAD///z/AAAAAAAAAAACAPz/AAAAAAAAAAACAPv/AAAAAAAAAAD///H/AAAAAAAAAAD//+r/AAAAAAAAAAAAAOb/AAAAAAAAAAD//+P/AAAAAAAAAAABAOz/AAAAAAAAAAABAPT/AAAAAAAAAAD9/9//AAAAAAAAAAD9/+D/AAAAAAAAAAD9/+H/AAAAAAAAAAD9/+L/AAAAAAAAAAD9/+P/AAAAAAAAAAD9/+T/AAAAAAAAAAD9/+X/AAAAAAAAAAD9/+b/AAAAAAAAAAD9/+f/AAAAAAAAAAD9/+j/AAAAAAAAAAD9/+n/AAAAAAAAAAD9/+r/AAAAAAAAAAD9/+v/AAAAAAAAAAD9/+z/AAAAAAAAAAD9/+3/AAAAAAAAAAD9/+7/AAAAAAAAAAD9/+//AAAAAAAAAAD9//D/AAAAAAAAAAD9//H/AAAAAAAAAAD9//f/AAAAAAAAAAD9//z/AAAAAAAAAAD9//3/AAAAAAAAAAD9//7/AAAAAAAAAAD9////AAAAAAAAAAD9/wAAAAAAAAAAAAD9/wEAAAAAAAAAAAD9/wIAAAAAAAAAAAD9/wMAAAAAAAAAAAD9/wQAAAAAAAAAAAD9/wUAAAAAAAAAAAD9/wYAAAAAAAAAAAD9/wcAAAAAAAAAAAD9/wgAAAAAAAAAAAD9/wkAAAAAAAAAAAD9/woAAAAAAAAAAAD9/wsAAAAAAAAAAAD9/wwAAAAAAAAAAAD9/w0AAAAAAAAAAAD9/w4AAAAAAAAAAAD9/w8AAAAAAAAAAAD9/xAAAAAAAAAAAAD9/xEAAAAAAAAAAAD9/xIAAAAAAAAAAAD9/xMAAAAAAAAAAAD9/xQAAAAAAAAAAAD9/xUAAAAAAAAAAAD9/xYAAAAAAAAAAAD9/xcAAAAAAAAAAAD+////AAAAAAAAAAAAAPz/AAAAAAAAAAD+/w8AAAAAAAAAAAD+/wcAAQAAAAAAAAD+/wwAAQAAAAAAAAACAP3/AAAAAAAAAAACAA8AAAAAAAAAAAACABYAAAAAAAAAAAACABUAAAAAAAAAAAACABQAAAAAAAAAAAACABMAAAAAAAAAAAACABIAAAAAAAAAAAD9/97/AAAAAAAAAAD9/93/AAAAAAAAAAD+/97/AAAAAAAAAAACAOH/AAAAAAAAAAACAPD/AAAAAAAAAAA=")
+tile_set = ExtResource("7_8e6ug")
+
+[node name="Enemies" type="Node2D" parent="Tower1"]
+use_parent_material = true
+
+[node name="wheel4" parent="Tower1/Enemies" instance=ExtResource("8_i78w7")]
+position = Vector2(-13, -46)
+
+[node name="Props" type="Node2D" parent="Tower1"]
+
+[node name="Tower2" type="Node2D" parent="."]
+use_parent_material = true
+position = Vector2(44, 0)
+
+[node name="TileMapLayer2" type="TileMapLayer" parent="Tower2"]
+use_parent_material = true
+position = Vector2(1, 0)
+tile_map_data = PackedByteArray("AAAAABcAAAAAAAAAAAABABcAAAAAAAAAAAACABcAAAAAAAAAAAD9/xcAAAAAAAAAAAD+/xcAAAAAAAAAAAD//xcAAAAAAAAAAAD9/wcAAAAAAAAAAAACAAcAAAAAAAAAAAD9////AAAAAAAAAAD9//f/AAAAAAAAAAD9//D/AAAAAAAAAAD9/+//AAAAAAAAAAD9/+7/AAAAAAAAAAD9/+j/AAAAAAAAAAD9/+f/AAAAAAAAAAD9/+b/AAAAAAAAAAACAP//AAAAAAAAAAACAOj/AAAAAAAAAAD9/+D/AAAAAAAAAAD9/w8AAAAAAAAAAAD+/w8AAAAAAAAAAAD//w8AAAAAAAAAAAAAAA8AAAAAAAAAAAABAA8AAAAAAAAAAAACAA8AAAAAAAAAAAD//wcAAAAAAAAAAAD+/wcAAAAAAAAAAAD+////AAAAAAAAAAD/////AAAAAAAAAAAAAP//AAAAAAAAAAABAP//AAAAAAAAAAD+//f/AAAAAAAAAAAAAO//AAAAAAAAAAD+/9//AAAAAAAAAAD9/9//AAAAAAAAAAD//9//AAAAAAAAAAAAAN//AAAAAAAAAAABAN//AAAAAAAAAAD+/xYAAAAAAAAAAAD+/xUAAAAAAAAAAAD+/xAAAAAAAAAAAAD+/xEAAAAAAAAAAAAAABAAAAAAAAAAAAAAABEAAAAAAAAAAAAAABIAAAAAAAAAAAAAABMAAAAAAAAAAAAAABQAAAAAAAAAAAD9/w4AAAAAAAAAAAD9/w0AAAAAAAAAAAD//wgAAAAAAAAAAAD//wkAAAAAAAAAAAD//woAAAAAAAAAAAD//wsAAAAAAAAAAAACAAgAAAAAAAAAAAACAAkAAAAAAAAAAAACAAoAAAAAAAAAAAACAAsAAAAAAAAAAAABAAsAAQAAAAAAAAABAAcAAAAAAAAAAAAAAAcAAAAAAAAAAAD+/wQAAAAAAAAAAAABAAQAAAAAAAAAAAD9/+H/AAAAAAAAAAD9/+L/AAAAAAAAAAD9/+P/AAAAAAAAAAD9/+T/AAAAAAAAAAD9/+X/AAAAAAAAAAD9/+n/AAAAAAAAAAD9/+r/AAAAAAAAAAD9/+v/AAAAAAAAAAD9/+z/AAAAAAAAAAD9/+3/AAAAAAAAAAAAAPD/AAAAAAAAAAABAPD/AAAAAAAAAAD///f/AQAAAAAAAAD+//b/AAAAAAAAAAD+//X/AAAAAAAAAAABAPb/AAAAAAAAAAABAPX/AAAAAAAAAAD+//D/AQAAAAAAAAD///D/AQAAAAAAAAACAOf/AAAAAAAAAAACAN//AAAAAAAAAAACAPD/AAAAAAAAAAAAAOP/AAAAAAAAAAABAOP/AAAAAAAAAAACAOP/AAAAAAAAAAABAOn/AAAAAAAAAAAAAOn/AAAAAAAAAAD//+n/AAAAAAAAAAD+/+n/AAAAAAAAAAACAOn/AAAAAAAAAAD+/+b/AAAAAAAAAAACAOr/AAAAAAAAAAACAOv/AAAAAAAAAAD9//r/AAAAAAAAAAD+//r/AAAAAAAAAAD///r/AAAAAAAAAAAAAPr/AAAAAAAAAAABAPr/AAAAAAAAAAACAPf/AAAAAAAAAAABAPf/AAAAAAAAAAAAAPf/AAAAAAAAAAAAAO7/AAAAAAAAAAABAOH/AAAAAAAAAAABAOD/AAAAAAAAAAABAPn/AAAAAAAAAAABAPj/AAAAAAAAAAD9/97/AAAAAAAAAAD9/93/AAAAAAAAAAABAN7/AAAAAAAAAAABAN3/AAAAAAAAAAABAP7/AAAAAAAAAAABAP3/AAAAAAAAAAA=")
+tile_set = ExtResource("7_8e6ug")
+
+[node name="Enemies" type="Node2D" parent="Tower2"]
+use_parent_material = true
+
+[node name="wheel" parent="Tower2/Enemies" instance=ExtResource("8_i78w7")]
+position = Vector2(-5, -166)
+
+[node name="wheel2" parent="Tower2/Enemies" instance=ExtResource("8_i78w7")]
+position = Vector2(0, -115)
+
+[node name="wheel3" parent="Tower2/Enemies" instance=ExtResource("8_i78w7")]
+position = Vector2(32, -80)
+
+[node name="wheel5" parent="Tower2/Enemies" instance=ExtResource("8_i78w7")]
+position = Vector2(-18, -6)
+
+[node name="wheel4" parent="Tower2/Enemies" instance=ExtResource("8_i78w7")]
+position = Vector2(0, 35)
+
+[node name="wheel6" parent="Tower2/Enemies" instance=ExtResource("8_i78w7")]
+position = Vector2(4, 75)
+
+[node name="wheel7" parent="Tower2/Enemies" instance=ExtResource("8_i78w7")]
+position = Vector2(57, 115)
+
+[node name="Props" type="Node2D" parent="Tower2"]
+
+[node name="Tower3" type="Node2D" parent="."]
+use_parent_material = true
+position = Vector2(110, 0)
+
+[node name="TileMapLayer3" type="TileMapLayer" parent="Tower3"]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAD9/xcAAAAAAAAAAAD+/xcAAAAAAAAAAAD//xcAAAAAAAAAAAAAABcAAAAAAAAAAAABABcAAAAAAAAAAAD9/w8AAAAAAAAAAAD+/w8AAAAAAAAAAAD//w8AAQAAAAAAAAAAAA8AAQAAAAAAAAAAABQAAAAAAAAAAAD9/xQAAAAAAAAAAAAAAAcAAAAAAAAAAAD//wcAAAAAAAAAAAD+/wcAAAAAAAAAAAD9/wcAAAAAAAAAAAD+/w4AAAAAAAAAAAD+/w0AAAAAAAAAAAD+////AAAAAAAAAAD9////AAAAAAAAAAD/////AQAAAAAAAAAAAP//AQAAAAAAAAD+/wQAAAAAAAAAAAD//wQAAAAAAAAAAAD//wUAAAAAAAAAAAD//wYAAAAAAAAAAAD+//f/AAAAAAAAAAD///f/AAAAAAAAAAAAAPf/AAAAAAAAAAABAPf/AAAAAAAAAAD+/9//AAAAAAAAAAD//9//AAAAAAAAAAAAAN//AAAAAAAAAAABAN//AAAAAAAAAAD9//D/AAAAAAAAAAD+//D/AAAAAAAAAAAAAOv/AAAAAAAAAAD+/+P/AAAAAAAAAAD//+P/AAAAAAAAAAAAAOP/AAAAAAAAAAD9/+f/AAAAAAAAAAACAP//AAAAAAAAAAACAAAAAAAAAAAAAAACAAEAAAAAAAAAAAACAAIAAAAAAAAAAAACAAsAAAAAAAAAAAACAAoAAAAAAAAAAAACAAkAAAAAAAAAAAACAAgAAAAAAAAAAAACAAcAAAAAAAAAAAACAAYAAAAAAAAAAAACAAUAAAAAAAAAAAACAAQAAAAAAAAAAAACAAMAAAAAAAAAAAACAAwAAAAAAAAAAAACAA0AAAAAAAAAAAACAA4AAAAAAAAAAAACAA8AAAAAAAAAAAACABAAAAAAAAAAAAACABEAAAAAAAAAAAACABIAAAAAAAAAAAACABMAAAAAAAAAAAACABQAAAAAAAAAAAACABUAAAAAAAAAAAACABYAAAAAAAAAAAACABcAAAAAAAAAAAABAA8AAAAAAAAAAAABABQAAAAAAAAAAAABAAcAAAAAAAAAAAABAP//AAAAAAAAAAACAPf/AAAAAAAAAAACAPD/AAAAAAAAAAACAO//AAAAAAAAAAACAO7/AAAAAAAAAAACAO3/AAAAAAAAAAACAOz/AAAAAAAAAAACAOv/AAAAAAAAAAACAOr/AAAAAAAAAAACAOn/AAAAAAAAAAACAOj/AAAAAAAAAAACAOf/AAAAAAAAAAACAOb/AAAAAAAAAAACAOX/AAAAAAAAAAACAOT/AAAAAAAAAAACAOP/AAAAAAAAAAACAOL/AAAAAAAAAAACAOH/AAAAAAAAAAACAOD/AAAAAAAAAAACAN//AAAAAAAAAAABAOv/AAAAAAAAAAABAOP/AAAAAAAAAAD//+//AAAAAAAAAAD//+7/AAAAAAAAAAD///D/AAAAAAAAAAD//+H/AAAAAAAAAAD//+D/AAAAAAAAAAD9/9//AAAAAAAAAAD9/+L/AAAAAAAAAAD9/+P/AAAAAAAAAAD+/+f/AAAAAAAAAAD//97/AAAAAAAAAAD//93/AAAAAAAAAAACAN3/AAAAAAAAAAACAN7/AAAAAAAAAAD9//f/AAAAAAAAAAACAP7/AAAAAAAAAAACAP3/AAAAAAAAAAACAPz/AAAAAAAAAAD///z/AAAAAAAAAAD+//z/AAAAAAAAAAA=")
+tile_set = ExtResource("7_8e6ug")
+
+[node name="Enemies" type="Node2D" parent="Tower3"]
+
+[node name="wheel" parent="Tower3/Enemies" instance=ExtResource("8_i78w7")]
+position = Vector2(12, -166)
+
+[node name="Props" type="Node2D" parent="Tower3"]
+position = Vector2(-66, 0)
+
+[node name="Door" parent="Tower3/Props" instance=ExtResource("9_ll6lo")]
+position = Vector2(38, -165)
+
+[node name="StaticBody2D" parent="Tower3/Props" instance=ExtResource("10_hlj52")]
+position = Vector2(83, -151)
+
+[node name="TowerOut" type="Node2D" parent="."]
+use_parent_material = true
+position = Vector2(44, 0)
+
+[node name="CharacterBody2D" parent="TowerOut" instance=ExtResource("10_d331n")]
+position = Vector2(5.96046e-08, 10)

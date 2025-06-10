@@ -7,7 +7,6 @@ extends Area2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	
 	anim.play("Close")
 	Global.connect("pressed", Callable(self, "opening"))
 
@@ -24,3 +23,5 @@ func _on_body_entered(body: Node2D) -> void:
 		body.set_process(false)
 		body.set_physics_process(false)
 		anim.play("Slime_Entering")
+		await anim.animation_finished
+		Global.torre += 1

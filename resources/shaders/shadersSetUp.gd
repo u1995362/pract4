@@ -1,4 +1,7 @@
 extends Node2D
+
+var nivellActual
+
 """
 @onready var tower = $Tower
 @onready var scene = $Tower/Scene
@@ -23,3 +26,16 @@ func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("retry"):
 		get_tree().change_scene_to_file("res://scenes/main.tscn")
 	"""
+
+func _ready() -> void:
+	nivellActual = 1
+	Global.torre = nivellActual
+
+func _process(delta: float) -> void:
+	if (Global.torre != nivellActual):
+		var posicion = get_node("Tower").position
+		get_node("Tower").queue_free()
+		if(Global.torre == 2):
+			get_node("Tower").name = "Torre2"
+		elif(Global.torre == 3):
+			get_node("Tower").name = "Torre2"
