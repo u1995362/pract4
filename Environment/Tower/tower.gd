@@ -54,5 +54,5 @@ func _rotate_left():
 	Left = temp
 	Global.midTowerPosition = Mid.global_position
 
-func set_player(player: Slime) -> void:
+func track_player(player: Slime) -> void:
 	Player = player

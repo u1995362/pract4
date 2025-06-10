@@ -1,21 +1,21 @@
 [gd_scene load_steps=8 format=3 uid="uid://dhxv411naklgu"]
 
 [ext_resource type="Script" path="res://Props/Presure plate/presure_plate.gd" id="1_e8j1i"]
-[ext_resource type="Texture2D" uid="uid://2mvt67j4k5x0" path="res://Props/Presure plate/Presure_Plate.png" id="2_q178a"]
+[ext_resource type="Texture2D" uid="uid://rpuqqutsigp1" path="res://Props/Presure plate/Presure_Plate-sheet.png" id="2_5byrl"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6stvb"]
-atlas = ExtResource("2_q178a")
-region = Rect2(0, 0, 60, 60)
+[sub_resource type="AtlasTexture" id="AtlasTexture_1clcq"]
+atlas = ExtResource("2_5byrl")
+region = Rect2(0, 0, 9, 2)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6nlox"]
-atlas = ExtResource("2_q178a")
-region = Rect2(0, 60, 60, 60)
+[sub_resource type="AtlasTexture" id="AtlasTexture_p81oa"]
+atlas = ExtResource("2_5byrl")
+region = Rect2(9, 0, 9, 2)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_84ogb"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6stvb")
+"texture": SubResource("AtlasTexture_1clcq")
 }],
 "loop": true,
 "name": &"Normal",
@@ -23,7 +23,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6nlox")
+"texture": SubResource("AtlasTexture_p81oa")
 }],
 "loop": true,
 "name": &"Pressed",
@@ -40,8 +40,8 @@ size = Vector2(9, 1)
 script = ExtResource("1_e8j1i")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -6)
-scale = Vector2(0.2, 0.2)
+use_parent_material = true
+position = Vector2(0.5, -1)
 sprite_frames = SubResource("SpriteFrames_84ogb")
 animation = &"Normal"
 

@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://d1q7xp11tjvtf"]
+[gd_scene load_steps=16 format=3 uid="uid://d1q7xp11tjvtf"]
 
 [ext_resource type="Shader" path="res://resources/shaders/paletteSwap.gdshader" id="1_wv5hj"]
 [ext_resource type="Script" path="res://resources/shaders/shadersSetUp.gd" id="2_mro8r"]
 [ext_resource type="Texture2D" uid="uid://1erkmbnbkls6" path="res://resources/shaders/palette_default.png" id="4_52jrn"]
 [ext_resource type="Script" path="res://main.gd" id="4_nxhv7"]
+[ext_resource type="Texture2D" uid="uid://cx35i5aggr475" path="res://Characters/King Slime/crown.png" id="6_7h27t"]
 [ext_resource type="Texture2D" uid="uid://lrvcar35b3lb" path="res://resources/shaders/palette_blue.png" id="15_vee30"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_843tt"]
@@ -20,10 +21,59 @@ shader_parameter/precision = 0.01
 shader_parameter/palette_in = ExtResource("4_52jrn")
 shader_parameter/palette_out = ExtResource("15_vee30")
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_xmdtc"]
+atlas = ExtResource("6_7h27t")
+region = Rect2(0, 0, 28, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ita45"]
+atlas = ExtResource("6_7h27t")
+region = Rect2(28, 0, 28, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fq2qp"]
+atlas = ExtResource("6_7h27t")
+region = Rect2(56, 0, 28, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nxp8m"]
+atlas = ExtResource("6_7h27t")
+region = Rect2(84, 0, 28, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qqni0"]
+atlas = ExtResource("6_7h27t")
+region = Rect2(112, 0, 28, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iym16"]
+atlas = ExtResource("6_7h27t")
+region = Rect2(140, 0, 28, 15)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hkwhl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xmdtc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ita45")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fq2qp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nxp8m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qqni0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iym16")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="Main" type="Node2D"]
 material = SubResource("ShaderMaterial_843tt")
 script = ExtResource("4_nxhv7")
-starting_lvl = 3
 metadata/_edit_vertical_guides_ = [12.0, 76.0]
 metadata/_edit_horizontal_guides_ = [-240.0]
 
@@ -32,11 +82,16 @@ script = ExtResource("2_mro8r")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 material = SubResource("ShaderMaterial_kmh7i")
-position = Vector2(38, 100)
+position = Vector2(44, 60)
 limit_top = -240
-limit_bottom = 120
+limit_bottom = -90
 position_smoothing_speed = 100.0
 drag_vertical_enabled = true
 drag_top_margin = 0.3
 drag_bottom_margin = 0.4
 editor_draw_screen = false
+
+[node name="Crown" type="AnimatedSprite2D" parent="."]
+position = Vector2(44, -240)
+sprite_frames = SubResource("SpriteFrames_hkwhl")
+frame_progress = 0.0311507
