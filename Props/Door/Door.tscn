@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://b3j4ou1nr4xfj"]
+[gd_scene load_steps=28 format=3 uid="uid://b3j4ou1nr4xfj"]
 
 [ext_resource type="Script" path="res://Props/Door/door.gd" id="1_pslnp"]
 [ext_resource type="Texture2D" uid="uid://dhwk24ye03x0n" path="res://Props/Door/Door.png" id="2_jcg3j"]
@@ -43,6 +43,10 @@ region = Rect2(22, 0, 22, 25)
 [sub_resource type="AtlasTexture" id="AtlasTexture_8bjmr"]
 atlas = ExtResource("2_jcg3j")
 region = Rect2(0, 0, 22, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hh5pg"]
+atlas = ExtResource("3_mqsrb")
+region = Rect2(44, 50, 22, 25)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j6bq7"]
 atlas = ExtResource("3_mqsrb")
@@ -132,6 +136,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_hh5pg")
+}],
+"loop": true,
+"name": &"Opened",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_j6bq7")
 }, {
 "duration": 1.0,
@@ -181,7 +193,7 @@ script = ExtResource("1_pslnp")
 use_parent_material = true
 position = Vector2(0, -12.5)
 sprite_frames = SubResource("SpriteFrames_4g8hg")
-animation = &"Open"
+animation = &"Opened"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 use_parent_material = true

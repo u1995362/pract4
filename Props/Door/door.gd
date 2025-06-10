@@ -26,6 +26,8 @@ func _ready() -> void:
 			anim.play("Open")
 			door_state = state.OPENING
 			await anim.animation_finished
+			anim.stop()
+			anim.frame = anim.sprite_frames.get_frame_count("Open") - 1
 			door_state = state.OPEN
 		state.CLOSED:
 			anim.play("Close")
@@ -39,6 +41,7 @@ func open():
 	door_state = state.OPENING
 	await anim.animation_finished
 	anim.stop()
+	anim.frame = anim.sprite_frames.get_frame_count("Open") - 1
 	door_state = state.OPEN
 
 func _on_body_entered(body: Node2D) -> void:
