@@ -49,6 +49,7 @@ var actual_state : state = state.IDDLE
 
 func _ready() -> void:
 	$CoyoteTimer.wait_time = coyote_frames / 60.0
+	Global.connect("entered", Callable(self, "entering"))
 
 func _physics_process(delta: float) -> void:
 	#if is_clone: return
@@ -249,3 +250,8 @@ func _on_coyote_timer_timeout():
 
 func take_dmg(_dmg:int) -> void:
 	actual_state = state.DEAD 
+
+func entering():
+	visible = false
+	set_process(false)
+	set_physics_process(false)
