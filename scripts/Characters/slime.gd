@@ -1,18 +1,24 @@
 class_name Slime extends Avatar
 
 @onready var animation_tree:AnimationTree = $Sprite2D/AnimationTree
-@onready var animation_state=  animation_tree.get("parameters/playback")
+@onready var animation_state = animation_tree.get("parameters/playback")
 
 @onready var rayCL: RayCast2D = $RayCrouchL
 @onready var rayCR: RayCast2D = $RayCrouchR
 
 var direction: int = 1
 
-const SPEED : float = 30.0
-const SPEED_JUMPING : float = 30.0
-const SPEED_FALLING : float = 30.0
-const SPEED_CRAWLING : float = 20.0
-const SPEED_DEAD : float = 0.0
+#Coyote
+@export var coyote_frames = 6
+var coyote = false 
+
+
+@export_category("Speed while...")
+@export var  SPEED_WALKING : float = 30.0
+@export var  SPEED_JUMPING : float = 30.0
+@export var  SPEED_FALLING : float = 30.0
+@export var  SPEED_CRAWLING : float = 20.0
+@export var  SPEED_DEAD : float = 0.0
 
 
 const JUMP_DISTANCE : float = 3 * 8
@@ -21,10 +27,6 @@ const JUMP_IMPULSE : float = ( -2 * JUMP_DISTANCE ) / ( JUMP_TIME )
 const GRAVITY : float = ( 2 * JUMP_DISTANCE ) / ( JUMP_TIME * JUMP_TIME ) 
 const JUMP_MOON : float = 0.8
 const FALL_FAST : float = 1.8
-
-#Coyote
-var coyote_frames = 6
-var coyote = false 
 
 enum state {
 	IDDLE,
@@ -98,7 +100,7 @@ func movement() -> void:
 		
 		match actual_state:
 			state.IDDLE:
-				speed = SPEED
+				speed = SPEED_WALKING
 			state.JUMPING:
 				speed = SPEED_JUMPING
 			state.FALLING:
