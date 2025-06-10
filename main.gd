@@ -8,6 +8,7 @@ var remoteTransform : RemoteTransform2D
 
 
 @export_range(1,3) var starting_lvl: int = 1
+var towers = [
 	preload("res://Environment/Tower/Sections/tower1.tscn"),
 	preload("res://Environment/Tower/Sections/tower2.tscn"),
 	preload("res://Environment/Tower/Sections/tower3.tscn")
