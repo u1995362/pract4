@@ -93,6 +93,7 @@ use_parent_material = true
 position = Vector2(12, -166)
 
 [node name="Props" type="Node2D" parent="Tower3"]
+use_parent_material = true
 position = Vector2(-66, 0)
 
 [node name="Door" parent="Tower3/Props" instance=ExtResource("9_ll6lo")]
@@ -106,4 +107,4 @@ use_parent_material = true
 position = Vector2(44, 0)
 
 [node name="Flame" parent="TowerOut" instance=ExtResource("10_d331n")]
-position = Vector2(5.96046e-08, 10)
+position = Vector2(0, 10)
