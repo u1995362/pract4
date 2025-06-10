@@ -1,5 +1,6 @@
 extends Node2D
 
+
 func update_shaders() -> void:
 	var sh : ShaderMaterial = self.owner.material
 	var Bsh : ShaderMaterial = $BackgroundSetting.material

@@ -76,6 +76,7 @@ position = Vector2(4, 75)
 position = Vector2(57, 115)
 
 [node name="Props" type="Node2D" parent="Tower2"]
+use_parent_material = true
 
 [node name="Tower3" type="Node2D" parent="."]
 use_parent_material = true

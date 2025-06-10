@@ -23,6 +23,7 @@ shader_parameter/palette_out = ExtResource("15_vee30")
 [node name="Main" type="Node2D"]
 material = SubResource("ShaderMaterial_843tt")
 script = ExtResource("4_nxhv7")
+starting_lvl = 3
 metadata/_edit_vertical_guides_ = [12.0, 76.0]
 metadata/_edit_horizontal_guides_ = [-240.0]
 
