@@ -36,7 +36,7 @@ alignment = 1
 
 [node name="Title" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "SLIME
+text = "MONSTER 
 TOWER"
 horizontal_alignment = 1
 
