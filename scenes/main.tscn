@@ -15,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://1erkmbnbkls6" path="res://shaders/palette_default.png" id="12_8ytc2"]
 [ext_resource type="PackedScene" uid="uid://b3j4ou1nr4xfj" path="res://scenes/Door.tscn" id="12_qcd54"]
 [ext_resource type="Texture2D" uid="uid://lrvcar35b3lb" path="res://shaders/palette_blue.png" id="13_vleef"]
-[ext_resource type="PackedScene" uid="uid://bcvgmxy5cngw2" path="res://scenes/presure_plate.tscn" id="14_1gjkc"]
+[ext_resource type="PackedScene" uid="uid://dhxv411naklgu" path="res://scenes/presure_plate.tscn" id="14_1gjkc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_843tt"]
 shader = ExtResource("11_swa86")
@@ -179,7 +179,7 @@ position = Vector2(16, 15)
 position = Vector2(5, -30)
 
 [node name="Door" parent="Tower/Tower2/Enemies" instance=ExtResource("12_qcd54")]
-position = Vector2(23, -84)
+position = Vector2(27, -87.5)
 
 [node name="Tower3" type="Node2D" parent="Tower"]
 use_parent_material = true

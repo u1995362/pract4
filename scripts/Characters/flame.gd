@@ -24,6 +24,7 @@ func _physics_process(delta: float) -> void:
 		return 
 	
 	distancia += speed * delta
+	print(distancia)
 	velocity = Vector2(direction * speed, 0)
 	move_and_slide()
 	
