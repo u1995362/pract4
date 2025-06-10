@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://2mvt67j4k5x0"
-path="res://.godot/imported/Presure_Plate.png-9a951efebe5d2751262640ee95356581.ctex"
+path="res://.godot/imported/Presure_Plate.png-64a5151c231b7b49609c439a387053a8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Presure_Plate.png"
-dest_files=["res://.godot/imported/Presure_Plate.png-9a951efebe5d2751262640ee95356581.ctex"]
+source_file="res://assets/Evironment/Presure_Plate.png"
+dest_files=["res://.godot/imported/Presure_Plate.png-64a5151c231b7b49609c439a387053a8.ctex"]
 
 [params]
 

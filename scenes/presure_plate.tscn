@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://dhxv411naklgu"]
 
-[ext_resource type="Texture2D" uid="uid://2mvt67j4k5x0" path="res://assets/Presure_Plate.png" id="1_k1upi"]
+[ext_resource type="Texture2D" uid="uid://2mvt67j4k5x0" path="res://assets/Evironment/Presure_Plate.png" id="1_k1upi"]
 [ext_resource type="Script" path="res://scripts/presure_plate.gd" id="1_xpdbl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6stvb"]
@@ -31,33 +31,31 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_auaj3"]
-size = Vector2(11, 2)
+size = Vector2(7, 1)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mde42"]
-size = Vector2(11, 2.5)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1246j"]
+size = Vector2(9, 1)
 
 [node name="StaticBody2D" type="StaticBody2D"]
-position = Vector2(0, -8)
+position = Vector2(0, -6)
 script = ExtResource("1_xpdbl")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.25, 0.25)
+scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_84ogb")
-animation = &"Normal"
+animation = &"Pressed"
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 light_mask = 3
-position = Vector2(0.5, 6)
+position = Vector2(0.5, 4.5)
 shape = SubResource("RectangleShape2D_auaj3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-light_mask = 0
-visibility_layer = 0
-position = Vector2(0.5, 6.25)
-shape = SubResource("RectangleShape2D_mde42")
+light_mask = 3
+position = Vector2(0.5, 5.5)
+shape = SubResource("RectangleShape2D_1246j")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
