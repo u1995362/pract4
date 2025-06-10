@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bcvgmxy5cngw2"]
+[gd_scene load_steps=8 format=3 uid="uid://dhxv411naklgu"]
 
 [ext_resource type="Texture2D" uid="uid://2mvt67j4k5x0" path="res://assets/Evironment/Presure_Plate.png" id="1_k1upi"]
 [ext_resource type="Script" path="res://scripts/presure_plate.gd" id="1_xpdbl"]
