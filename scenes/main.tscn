@@ -178,9 +178,6 @@ position = Vector2(16, 15)
 [node name="wheel4" parent="Tower/Tower2/Enemies" instance=ExtResource("6_shiux")]
 position = Vector2(5, -30)
 
-[node name="CharacterBody2D" parent="Tower/Tower2/Enemies" instance=ExtResource("11_n50va")]
-position = Vector2(1, 29)
-
 [node name="Door" parent="Tower/Tower2/Enemies" instance=ExtResource("12_qcd54")]
 position = Vector2(23, -84)
 
@@ -195,6 +192,9 @@ tile_set = ExtResource("7_orpcr")
 
 [node name="TowerOut" type="Node2D" parent="Tower"]
 position = Vector2(44, 0)
+
+[node name="CharacterBody2D" parent="Tower" instance=ExtResource("11_n50va")]
+position = Vector2(45, 29)
 
 [node name="slime" parent="." instance=ExtResource("1_lkb1x")]
 position = Vector2(40, 96)

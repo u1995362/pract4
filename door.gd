@@ -17,4 +17,6 @@ func opening():
 		open = true
 
 func _on_body_entered(body: Node2D) -> void:
-	pass # Replace with function body.
+	if open:
+		anim.play("Close")
+		Global.emit_entered()
