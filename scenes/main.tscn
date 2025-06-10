@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://xkseisetgdhg" path="res://scenes/Characters/Flame.tscn" id="11_n50va"]
 [ext_resource type="Shader" path="res://shaders/paletteSwap.gdshader" id="11_swa86"]
 [ext_resource type="Texture2D" uid="uid://1erkmbnbkls6" path="res://shaders/palette_default.png" id="12_8ytc2"]
-[ext_resource type="PackedScene" uid="uid://bqulqylwywp5s" path="res://scenes/Door.tscn" id="12_qcd54"]
+[ext_resource type="PackedScene" uid="uid://b3j4ou1nr4xfj" path="res://scenes/Door.tscn" id="12_qcd54"]
 [ext_resource type="Texture2D" uid="uid://lrvcar35b3lb" path="res://shaders/palette_blue.png" id="13_vleef"]
 [ext_resource type="PackedScene" uid="uid://dhxv411naklgu" path="res://scenes/presure_plate.tscn" id="14_1gjkc"]
 
