@@ -11,8 +11,7 @@ var remoteTransform : RemoteTransform2D
 var towers = [
 	preload("res://Environment/Tower/Sections/tower1.tscn"),
 	preload("res://Environment/Tower/Sections/tower2.tscn"),
-	preload("res://Environment/Tower/Sections/tower2.tscn"),
-	preload("res://Environment/Tower/Sections/tower2.tscn")
+	preload("res://Environment/Tower/Sections/tower3.tscn")
 ]
 var presure_plates_x_lvl = [ 0, 1, 7 ]
 

@@ -1,4 +1,4 @@
 [gd_resource type="ViewportTexture" format=3 uid="uid://0ti7g43w57xo"]
 
 [resource]
-viewport_path = NodePath("Scene/BackgroundSetting/TowerViewport")
+viewport_path = NodePath("BackgroundSetting/TowerViewport")

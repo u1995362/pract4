@@ -100,7 +100,8 @@ position = Vector2(-66, 0)
 [node name="Door" parent="Tower3/Props" instance=ExtResource("9_ll6lo")]
 position = Vector2(38, -165)
 
-[node name="StaticBody2D" parent="Tower3/Props" instance=ExtResource("10_hlj52")]
+[node name="PresurePlate" parent="Tower3/Props" instance=ExtResource("10_hlj52")]
+use_parent_material = true
 position = Vector2(82, -145)
 
 [node name="TowerOut" type="Node2D" parent="."]
