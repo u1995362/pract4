@@ -7,7 +7,7 @@ const SPEED : float = 8.0
 @onready var Player := $"../slime"
 
 @onready var Tower := $Scene/TowerSprites
-@onready var innerTower := $Scene/TowerViewport/WallBackground
+@onready var innerTower := $Scene/BackgroundSetting/TowerViewport/WallBackground
 
 @onready var Left := $Tower1
 @onready var Mid := $Tower2
