@@ -8,10 +8,6 @@
 atlas = ExtResource("2_jcg3j")
 region = Rect2(198, 0, 22, 25)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8bjmr"]
-atlas = ExtResource("2_jcg3j")
-region = Rect2(0, 0, 22, 25)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_7agde"]
 atlas = ExtResource("2_jcg3j")
 region = Rect2(176, 0, 22, 25)
@@ -43,6 +39,10 @@ region = Rect2(44, 0, 22, 25)
 [sub_resource type="AtlasTexture" id="AtlasTexture_k772f"]
 atlas = ExtResource("2_jcg3j")
 region = Rect2(22, 0, 22, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8bjmr"]
+atlas = ExtResource("2_jcg3j")
+region = Rect2(0, 0, 22, 25)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j6bq7"]
 atlas = ExtResource("3_mqsrb")
@@ -100,14 +100,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8bjmr")
-}],
-"loop": true,
-"name": &"Open",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_7agde")
 }, {
 "duration": 1.0,
@@ -130,9 +122,12 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_k772f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8bjmr")
 }],
 "loop": false,
-"name": &"Opening",
+"name": &"Open",
 "speed": 5.0
 }, {
 "frames": [{
@@ -175,19 +170,21 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ic2s6"]
-radius = 8.0
-height = 22.0
+radius = 5.0
+height = 18.0
 
 [node name="Door" type="Area2D"]
+use_parent_material = true
 script = ExtResource("1_pslnp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -12.5)
 sprite_frames = SubResource("SpriteFrames_4g8hg")
-animation = &"Open"
+animation = &"Close"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -11)
+position = Vector2(0, -9)
 shape = SubResource("CapsuleShape2D_ic2s6")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

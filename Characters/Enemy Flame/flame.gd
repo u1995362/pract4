@@ -24,14 +24,14 @@ func _physics_process(delta: float) -> void:
 		return 
 	
 	distancia += speed * delta
-	print(distancia)
+	#print(distancia)
 	velocity = Vector2(direction * speed, 0)
 	move_and_slide()
 	
-	if position.x >= Global.midTowerPosition.x + WIDTH_LOOP / 2:
+	if position.x >= Global.midTowerPosition.x + WIDTH_LOOP / 2.0:
 		position.x -= WIDTH_LOOP
 		
-	if position.x <= Global.midTowerPosition.x - WIDTH_LOOP / 2:
+	if position.x <= Global.midTowerPosition.x - WIDTH_LOOP / 2.0:
 		position.x += WIDTH_LOOP
 	
 	if distancia >= WIDTH_LOOP:

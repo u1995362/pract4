@@ -1,9 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://hk6m0yj2x7ws"]
+[gd_scene load_steps=11 format=3 uid="uid://hk6m0yj2x7ws"]
 
 [ext_resource type="Texture2D" uid="uid://jyt6p5subqwj" path="res://Environment/ParallaxBackground/skyBackground.png" id="1_je732"]
+[ext_resource type="Script" path="res://resources/shaderBackground.gd" id="1_lnyq7"]
+[ext_resource type="Shader" path="res://resources/shaders/paletteSwap.gdshader" id="2_5y5bp"]
 [ext_resource type="Texture2D" uid="uid://cuwr7ff4m3m7x" path="res://Environment/ParallaxBackground/clouds.png" id="2_akps8"]
 [ext_resource type="Texture2D" uid="uid://beafma5jlu5bo" path="res://Environment/Tower/wallBackground.png" id="3_abq22"]
 [ext_resource type="Shader" path="res://resources/shaders/distorsio.gdshader" id="4_fm5l2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wducm"]
+shader = ExtResource("2_5y5bp")
+shader_parameter/num_colors = 5
+shader_parameter/precision = 0.01
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6cm36"]
 shader = ExtResource("4_fm5l2")
@@ -16,8 +23,10 @@ viewport_path = NodePath("BackgroundSetting/TowerViewport")
 viewport_path = NodePath("BackgroundSetting/TowerViewport")
 
 [node name="Scene" type="Node2D"]
+script = ExtResource("1_lnyq7")
 
 [node name="BackgroundSetting" type="Node2D" parent="."]
+material = SubResource("ShaderMaterial_wducm")
 
 [node name="SkyParallax" type="ParallaxBackground" parent="BackgroundSetting"]
 
